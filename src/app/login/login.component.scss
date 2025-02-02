@@ -1,0 +1,92 @@
+.parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1c1c1c; // Fondo negro
+    margin: 0;
+  }
+  
+  .div3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .login-card {
+    background-color: #2d2d2d; // Fondo gris oscuro
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  h1 {
+    color: #ffffff; // Color blanco para el título
+    margin-bottom: 1.5rem;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  
+    mat-label {
+      color: #b3b3b3; // Color gris claro para las etiquetas
+    }
+  
+    input {
+      color: #ffffff; // Texto blanco
+    }
+  
+    .mat-mdc-form-field-flex {
+      background-color: #404040; // Fondo del input
+      border-radius: 4px;
+    }
+  
+    .mat-mdc-form-field-ripple {
+      background-color: #757575; // Color del subrayado
+    }
+  }
+  
+  .login-button {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 4px;
+    background-color: #555555;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #777777;
+    }
+  }
+  
+  .create-account {
+    margin-top: 1rem;
+  
+    .create-account-link {
+      color: #b3b3b3; // Color gris claro
+      text-decoration: underline; // Subrayado ligero
+      cursor: pointer;
+      transition: color 0.3s ease;
+  
+      &:hover {
+        color: #ffffff; // Cambiar a blanco al pasar el mouse
+      }
+    }
+  }
+  
