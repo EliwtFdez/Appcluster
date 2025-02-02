@@ -19,7 +19,7 @@
 
 /* Botón para abrir/cerrar sidebar */
 .toggle-button {
-    position:initial;
+    position: absolute;
     top: 1rem;
     left: 50%;
     transform: translateX(-50%);
@@ -81,14 +81,12 @@ button:hover {
 
 /* Espacio entre secciones */
 .spacer {
-    flex-grow: 0;
+    flex-grow: 10;
 }
 
 /* Footer del sidebar */
 .sidebar-footer {
     padding-bottom: 8px;
-    display:grid;
-    justify-content: center;
 }
 
 .sidebar-footer .sidebar-item {
@@ -103,6 +101,27 @@ button:hover {
     border-radius: 8px;
 }
 
+/* Ajustes para el estado colapsado */
+.sidebar.collapsed .sidebar-footer .sidebar-item {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.sidebar.collapsed .sidebar-footer .label {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-footer .icon {
+    margin-right: 0;
+}
+
+.sidebar.collapsed .sidebar-footer .sidebar-item:hover {
+    background-color: #e0e0e0;
+    border-radius: 50%;
+}
+
+/* Divider */
 mat-divider {
     margin: 0.5rem 0;
 }
