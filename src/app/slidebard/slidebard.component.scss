@@ -2,37 +2,37 @@
     background-color: #ffffff;
     padding: 1rem;
     border-radius: 12px;
-    color: #333; 
-    height: 100%; 
+    color: #333;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; 
-    gap: 8px; 
-    transition: width 0.3s ease; 
-    width: 250px; 
-    position: relative; 
+    justify-content: flex-start;
+    gap: 8px;
+    transition: width 0.3s ease;
+    width: 250px;
+    position: relative;
 }
 
 .sidebar.collapsed {
-    width: 80px; 
+    width: 80px;
 }
 
-/* Botón de toggle en la parte superior */
+/* Botón para abrir/cerrar sidebar */
 .toggle-button {
     position: absolute;
-    top: 1rem; /* Distancia desde la parte superior */
-    right: 1rem; /* Distancia desde la parte derecha */
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 1; /* Asegura que esté por encima del contenido */
 }
 
 .toggle-button:hover {
@@ -40,21 +40,29 @@
 }
 
 .toggle-button img.logo {
-    width: 100%; /* Ajusta el tamaño de la imagen */
-    height: 100%; /* Ajusta el tamaño de la imagen */
-    border-radius: 50%; /* Para que la imagen sea circular */
-    object-fit: cover; /* Asegura que la imagen cubra el espacio */
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
+/* Contenedor de elementos */
+.menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+}
+
+/* Elementos del sidebar */
 .sidebar-item {
-    margin-bottom: 4px; 
+    margin-bottom: 8px;
 }
 
 button {
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border: none;
     background: none;
     cursor: pointer;
@@ -63,45 +71,50 @@ button {
 }
 
 button:hover {
-    background-color: #e0e0e0; 
+    background-color: #e0e0e0;
+    border-radius: 8px;
 }
 
 .icon {
     margin-right: 15px;
 }
 
-.lasticons {
+/* Espacio entre secciones */
+.spacer {
+    flex-grow: 1;
+}
+
+/* Footer del sidebar */
+.sidebar-footer {
+    padding-bottom: 1rem;
+}
+
+.sidebar-footer .sidebar-item {
     display: flex;
     align-items: center;
     padding: 10px;
     cursor: pointer;
-    color: inherit; 
 }
 
-.lasticons:hover {
-    background-color: #e0e0e0; 
-}
-
-.lasticons mat-icon {
-    margin-right: 8px;
+.sidebar-footer .sidebar-item:hover {
+    background-color: #e0e0e0;
+    border-radius: 8px;
 }
 
 mat-divider {
-    margin: 0.10rem 0; 
+    margin: 0.5rem 0;
 }
 
-/* Estilos para cuando el sidebar está colapsado */
-.sidebar.collapsed .label,
-.sidebar.collapsed .lasticons span {
-    display: none; /* Oculta los textos cuando está colapsado */
+/* Ocultar texto cuando está colapsado */
+.sidebar.collapsed .label {
+    display: none;
 }
 
-.sidebar.collapsed .icon,
-.sidebar.collapsed .lasticons mat-icon {
-    margin-right: 0; 
+.sidebar.collapsed .icon {
+    margin-right: 0;
 }
 
 .sidebar.collapsed .sidebar-item {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
 }
