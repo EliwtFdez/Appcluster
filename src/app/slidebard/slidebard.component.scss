@@ -14,13 +14,14 @@
 }
 
 .sidebar.collapsed {
-    width: 60px; /* Ancho cuando está colapsado */
+    width: 80px; /* Ancho cuando está colapsado */
 }
 
+/* Botón de toggle en la parte superior */
 .toggle-button {
     position: absolute;
-    top: 1rem;
-    right: -15px; /* Posición fuera del sidebar */
+    top: 1rem; /* Distancia desde la parte superior */
+    right: 1rem; /* Distancia desde la parte derecha */
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
     border-radius: 50%;
@@ -32,10 +33,17 @@
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1; /* Asegura que esté por encima del contenido */
+}
 
-    &:hover {
-        background-color: #f0f0f0;
-    }
+.toggle-button:hover {
+    background-color: #f0f0f0;
+}
+
+.toggle-button img.logo {
+    width: 100%; /* Ajusta el tamaño de la imagen */
+    height: 100%; /* Ajusta el tamaño de la imagen */
+    border-radius: 50%; /* Para que la imagen sea circular */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio */
 }
 
 .sidebar-item {
@@ -52,48 +60,48 @@ button {
     cursor: pointer;
     text-align: left;
     color: inherit; /* Hereda el color del texto del sidebar */
+}
 
-    &:hover {
-        background-color: #e0e0e0; /* Efecto hover */
-    }
+button:hover {
+    background-color: #e0e0e0; /* Efecto hover */
 }
 
 .icon {
-    margin-right: 8px;
+    margin-right: 15px;
 }
 
 .lasticons {
     display: flex;
     align-items: center;
-    padding: 8px;
+    padding: 10px;
     cursor: pointer;
     color: inherit; /* Hereda el color del texto del sidebar */
+}
 
-    &:hover {
-        background-color: #e0e0e0; /* Efecto hover */
-    }
+.lasticons:hover {
+    background-color: #e0e0e0; /* Efecto hover */
+}
 
-    mat-icon {
-        margin-right: 8px;
-    }
+.lasticons mat-icon {
+    margin-right: 8px;
 }
 
 mat-divider {
-    margin: 0.5rem 0; /* Menor espacio alrededor del separador */
+    margin: 0.10rem 0; /* Menor espacio alrededor del separador */
 }
 
 /* Estilos para cuando el sidebar está colapsado */
-.sidebar.collapsed {
-    .label, .lasticons span {
-        display: none; /* Oculta los textos cuando está colapsado */
-    }
+.sidebar.collapsed .label,
+.sidebar.collapsed .lasticons span {
+    display: none; /* Oculta los textos cuando está colapsado */
+}
 
-    .icon, .lasticons mat-icon {
-        margin-right: 0; /* Elimina el margen derecho */
-    }
+.sidebar.collapsed .icon,
+.sidebar.collapsed .lasticons mat-icon {
+    margin-right: 0; /* Elimina el margen derecho */
+}
 
-    .sidebar-item {
-        display: flex;
-        justify-content: center; /* Centra los íconos */
-    }
+.sidebar.collapsed .sidebar-item {
+    display: flex;
+    justify-content: center; /* Centra los íconos */
 }

@@ -27,14 +27,17 @@ export class SlidebardComponent {
     { icon: 'message', label: 'Comunicación', route: '/communication' },
   ];
 
-  // Lista de elementos del menú al final (por ejemplo, "Cerrar sesión")
   lastMenuItems = [
-    { icon: 'exit_to_app', label: 'Cerrar sesión', route: '/login' },
+    { icon: 'exit_to_app', label: 'Cerrar sesión', route: '/login'},
+
+    { icon: 'settings', label: 'Configuracion', route: '/config' },
+
   ];
 
   // Función para alternar el estado del sidebar
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
     this.toggle.emit(this.isCollapsed);
+  console.log('toggleslide func')
   }
 }

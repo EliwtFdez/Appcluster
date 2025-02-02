@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+
   onSidebarToggle(isCollapsed: boolean) {
     const parentElement = document.querySelector('.parent') as HTMLElement;
     if (parentElement) {
