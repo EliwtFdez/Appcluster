@@ -11,6 +11,8 @@
     transition: width 0.3s ease;
     width: 250px;
     position: relative;
+    min-width: 80px;
+    max-width: 250px;
 }
 
 .sidebar.collapsed {
@@ -56,6 +58,17 @@
 /* Elementos del sidebar */
 .sidebar-item {
     margin-bottom: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width 0.3s ease;
+    padding: 10px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.sidebar.collapsed .sidebar-item {
+    width: 40px;
+    justify-content: center;
 }
 
 button {
@@ -76,7 +89,28 @@ button:hover {
 }
 
 .icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
     margin-right: 15px;
+}
+
+.sidebar.collapsed .icon {
+    margin-right: 0;
+}
+
+.label {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar.collapsed .label {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sidebar:not(.collapsed) .label {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Espacio entre secciones */
@@ -124,18 +158,4 @@ button:hover {
 /* Divider */
 mat-divider {
     margin: 0.5rem 0;
-}
-
-/* Ocultar texto cuando está colapsado */
-.sidebar.collapsed .label {
-    display: none;
-}
-
-.sidebar.collapsed .icon {
-    margin-right: 0;
-}
-
-.sidebar.collapsed .sidebar-item {
-    display: flex;
-    justify-content: center;
 }
