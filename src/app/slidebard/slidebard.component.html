@@ -24,7 +24,7 @@
     <!-- Opciones de usuario -->
     <div class="sidebar-footer">
         <div class="sidebar-item" *ngFor="let item of lastMenuItems">
-            <button>
+             <button [routerLink]="item.route" routerLinkActive="active">
                 <mat-icon class="icon">{{ item.icon }}</mat-icon>
                 <span class="label">{{ item.label }}</span>
             </button>
