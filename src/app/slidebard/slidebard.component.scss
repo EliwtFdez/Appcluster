@@ -1,30 +1,99 @@
-.slidebard {
-  width: 250px;
-  height: 100vh;
-  background-color: #2d2d2d;
-  color: #ffffff;
-  padding: 1rem;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+.sidebar {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 12px;
+    color: #333; /* Color de texto predeterminado */
+    height: 100%; /* Ocupa toda la altura disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinea los elementos al inicio */
+    gap: 8px; /* Espacio entre elementos */
+    transition: width 0.3s ease; /* Animación para colapsar/expandir */
+    width: 250px; /* Ancho inicial del sidebar */
+    position: relative; /* Para posicionar el botón de toggle */
+}
 
-  .slidebard-item {
+.sidebar.collapsed {
+    width: 60px; /* Ancho cuando está colapsado */
+}
+
+.toggle-button {
+    position: absolute;
+    top: 1rem;
+    right: -15px; /* Posición fuera del sidebar */
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
-    padding: 0.75rem 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 4px;
+    justify-content: center;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1; /* Asegura que esté por encima del contenido */
 
     &:hover {
-      background-color: #404040;
+        background-color: #f0f0f0;
+    }
+}
+
+.sidebar-item {
+    margin-bottom: 4px; /* Menor espacio entre elementos */
+}
+
+button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    color: inherit; /* Hereda el color del texto del sidebar */
+
+    &:hover {
+        background-color: #e0e0e0; /* Efecto hover */
+    }
+}
+
+.icon {
+    margin-right: 8px;
+}
+
+.lasticons {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    color: inherit; /* Hereda el color del texto del sidebar */
+
+    &:hover {
+        background-color: #e0e0e0; /* Efecto hover */
     }
 
-    .icon {
-      margin-right: 1rem;
+    mat-icon {
+        margin-right: 8px;
+    }
+}
+
+mat-divider {
+    margin: 0.5rem 0; /* Menor espacio alrededor del separador */
+}
+
+/* Estilos para cuando el sidebar está colapsado */
+.sidebar.collapsed {
+    .label, .lasticons span {
+        display: none; /* Oculta los textos cuando está colapsado */
     }
 
-    .label {
-      font-size: 1rem;
+    .icon, .lasticons mat-icon {
+        margin-right: 0; /* Elimina el margen derecho */
     }
-  }
+
+    .sidebar-item {
+        display: flex;
+        justify-content: center; /* Centra los íconos */
+    }
 }

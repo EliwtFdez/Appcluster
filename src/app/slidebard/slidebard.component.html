@@ -1,7 +1,25 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+    <!-- Botón para ocultar/desplegar el sidebar -->
+    <button class="toggle-button" (click)="toggleSidebar()">
+        <mat-icon>{{ isCollapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+    </button>
 
-<div class="sidebar">
-  <div class="sidebar-item" *ngFor="let item of menuItems">
-    <mat-icon class="icon">{{ item.icon }}</mat-icon>
-    <span class="label">{{ item.label }}</span>
-  </div>
+    <!-- Lista principal de elementos del menú -->
+    <div class="sidebar-item" *ngFor="let item of menuItems">
+        <button [routerLink]="item.route" routerLinkActive="active">
+            <mat-icon class="icon">{{ item.icon }}</mat-icon>
+            <span class="label">{{ item.label }}</span>
+        </button>
+    </div>
+
+    <!-- Separador visual (opcional) -->
+    <mat-divider></mat-divider>
+
+    <!-- Lista de elementos del menú al final (por ejemplo, "Cerrar sesión") -->
+    <div class="sidebar-item" *ngFor="let item of lastMenuItems">
+        <footer class="lasticons">
+            <mat-icon>{{ item.icon }}</mat-icon>
+            <span class="label">{{ item.label }}</span>
+        </footer>
+    </div>
 </div>

@@ -11,4 +11,12 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {}
+export class HomeComponent {
+  onSidebarToggle(isCollapsed: boolean) {
+    const parentElement = document.querySelector('.parent') as HTMLElement;
+    if (parentElement) {
+      parentElement.style.setProperty('--sidebar-width', isCollapsed ? '60px' : '250px');
+    }
+  }
+
+}

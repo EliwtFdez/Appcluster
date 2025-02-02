@@ -1,29 +1,13 @@
 .parent {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: var(--sidebar-width, 250px) 1fr; /* Usamos una variable CSS */
     grid-template-rows: 1fr;
     gap: 8px;
     height: 100vh;
     background-color: #1c1c1c;
     margin: 0;
     padding: 8px;
-}
-
-.div1 {
-    background-color: #2d2d2d;
-    padding: 1rem;
-    border-radius: 12px;
-    color: #ffffff;
-}
-
-.div1 ul {
-    list-style: none;
-    padding: 0;
-}
-
-.div1 ul li {
-    margin: 0.5rem 0;
-    color: #b3b3b3;
+    transition: grid-template-columns 0.3s ease; /* Animación suave */
 }
 
 .div4 {
