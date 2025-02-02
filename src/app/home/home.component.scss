@@ -6,27 +6,28 @@
 
 .parent {
     display: grid;
-    grid-template-columns: var(--sidebar-width, 250px) 1fr; /* Usamos una variable CSS */
+    grid-template-columns: var(--sidebar-width, 250px) 1fr;
     grid-template-rows: 1fr;
     gap: 8px;
     height: 100vh;
     background-color: #1c1c1c;
     margin: 0;
     padding: 8px;
-    transition: grid-template-columns 0.3s ease; /* Animación suave */
+    transition: grid-template-columns 0.3s ease;
 }
 
 .div4 {
     background-color: #2d2d2d;
     padding: 1rem;
     border-radius: 12px;
-    color: #ffffff;overflow: hidden;
+    color: #ffffff;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Responsive design */
+/* Responsive */
 @media (max-width: 768px) {
     .parent {
         grid-template-columns: 1fr;
