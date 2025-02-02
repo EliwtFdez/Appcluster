@@ -1,0 +1,30 @@
+.slidebard {
+  width: 250px;
+  height: 100vh;
+  background-color: #2d2d2d;
+  color: #ffffff;
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+
+  .slidebard-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #404040;
+    }
+
+    .icon {
+      margin-right: 1rem;
+    }
+
+    .label {
+      font-size: 1rem;
+    }
+  }
+}
