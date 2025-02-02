@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { HomeComponent } from '../home/home.component';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-slidebard',
-  imports: [HomeComponent],
+  standalone: true,
+  imports: [CommonModule, MatIconModule, RouterModule],
   templateUrl: './slidebard.component.html',
   styleUrl: './slidebard.component.scss'
 })
 export class SlidebardComponent {
-  
   menuItems = [
     { icon: 'home', label: 'Registro de Viviendas' },
     { icon: 'people', label: 'Gestión de Residentes' },
@@ -17,5 +19,4 @@ export class SlidebardComponent {
     { icon: 'payment', label: 'Pagos y Facturación' },
     { icon: 'message', label: 'Comunicación' }
   ];
-
 }

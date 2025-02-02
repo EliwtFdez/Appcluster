@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [ BrowserModule, BrowserAnimationsModule , MatIconModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule, MatIconModule, RouterOutlet], // Elimina BrowserModule
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
