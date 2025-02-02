@@ -2,19 +2,19 @@
     background-color: #ffffff;
     padding: 1rem;
     border-radius: 12px;
-    color: #333; /* Color de texto predeterminado */
-    height: 100%; /* Ocupa toda la altura disponible */
+    color: #333; 
+    height: 100%; 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Alinea los elementos al inicio */
-    gap: 8px; /* Espacio entre elementos */
-    transition: width 0.3s ease; /* Animación para colapsar/expandir */
-    width: 250px; /* Ancho inicial del sidebar */
-    position: relative; /* Para posicionar el botón de toggle */
+    justify-content: flex-start; 
+    gap: 8px; 
+    transition: width 0.3s ease; 
+    width: 250px; 
+    position: relative; 
 }
 
 .sidebar.collapsed {
-    width: 80px; /* Ancho cuando está colapsado */
+    width: 80px; 
 }
 
 /* Botón de toggle en la parte superior */
@@ -47,7 +47,7 @@
 }
 
 .sidebar-item {
-    margin-bottom: 4px; /* Menor espacio entre elementos */
+    margin-bottom: 4px; 
 }
 
 button {
@@ -59,11 +59,11 @@ button {
     background: none;
     cursor: pointer;
     text-align: left;
-    color: inherit; /* Hereda el color del texto del sidebar */
+    color: inherit;
 }
 
 button:hover {
-    background-color: #e0e0e0; /* Efecto hover */
+    background-color: #e0e0e0; 
 }
 
 .icon {
@@ -75,11 +75,11 @@ button:hover {
     align-items: center;
     padding: 10px;
     cursor: pointer;
-    color: inherit; /* Hereda el color del texto del sidebar */
+    color: inherit; 
 }
 
 .lasticons:hover {
-    background-color: #e0e0e0; /* Efecto hover */
+    background-color: #e0e0e0; 
 }
 
 .lasticons mat-icon {
@@ -87,7 +87,7 @@ button:hover {
 }
 
 mat-divider {
-    margin: 0.10rem 0; /* Menor espacio alrededor del separador */
+    margin: 0.10rem 0; 
 }
 
 /* Estilos para cuando el sidebar está colapsado */
@@ -98,10 +98,10 @@ mat-divider {
 
 .sidebar.collapsed .icon,
 .sidebar.collapsed .lasticons mat-icon {
-    margin-right: 0; /* Elimina el margen derecho */
+    margin-right: 0; 
 }
 
 .sidebar.collapsed .sidebar-item {
     display: flex;
-    justify-content: center; /* Centra los íconos */
+    justify-content: center; 
 }

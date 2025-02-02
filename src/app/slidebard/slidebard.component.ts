@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-slidebard',
   standalone: true,
-  imports: [CommonModule, MatIconModule, RouterModule, MatDividerModule, MatListModule],
+  imports: [CommonModule, MatIconModule, RouterModule, MatDividerModule, MatListModule, ],
   templateUrl: './slidebard.component.html',
   styleUrl: './slidebard.component.scss',
 })

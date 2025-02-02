@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, SlidebardComponent, RouterModule, MatIconModule], // Asegúrate de no usar BrowserModule
+  imports: [CommonModule, SlidebardComponent, RouterModule, MatIconModule,], // NOOO usar BrowserModule
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
