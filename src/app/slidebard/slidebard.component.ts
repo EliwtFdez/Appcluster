@@ -18,6 +18,7 @@ export class SlidebardComponent {
   @Output() toggle = new EventEmitter<boolean>(); // Emite el estado del sidebar
 
 
+
   // Lista principal de elementos del menú
   menuItems = [
     { icon: 'home', label: 'Registro de Viviendas', route: '/housing-registry' },
@@ -34,6 +35,7 @@ export class SlidebardComponent {
     { icon: 'settings', label: 'Configuracion', route: '/config' },
 
   ];
+
 
   // Función para alternar el estado del sidebar
   toggleSidebar() {
