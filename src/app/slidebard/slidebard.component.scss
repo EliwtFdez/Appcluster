@@ -1,8 +1,7 @@
-$primary-color: #333;
-$hover-bg: rgba(103, 58, 183, 0.1);
-$active-bg: rgba(103, 58, 183, 0.2);
-$border-color: #ddd;
-$shadow: 2px 2px 10px rgba(0, 0, 0, 0.08);
+$primary-color: #ffffff;
+$hover-bg: rgba(0, 0, 0, 0.314);
+$border-color: #f16b6b;
+$shadow: 2px 2px 10px rgb(0, 0, 0);
 $transition-speed: 0.3s ease-in-out;
 
 @mixin transition($properties...) {
@@ -12,11 +11,10 @@ $transition-speed: 0.3s ease-in-out;
 :host {
   --primary-color: #{$primary-color};
   --hover-bg: #{$hover-bg};
-  --active-bg: #{$active-bg};
 }
 
 .sidebar {
-  background-color: #fff;
+  background-color: #3B3B3B;
   padding: 1rem;
   height: 100vh;
   display: flex;
@@ -60,11 +58,10 @@ $transition-speed: 0.3s ease-in-out;
     height: 40px;
     cursor: pointer;
     @include transition(all);
-    color: white;
+    color: #3B3B3B;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: $shadow;
 
     &:hover {
       transform: translateX(-50%) scale(1.1);
@@ -94,8 +91,8 @@ $transition-speed: 0.3s ease-in-out;
     @include transition(all);
 
     &:hover {
-      background-color: $hover-bg;
-      transform: translateX(4px);
+      background-color: $hover-bg; 
+      transform: translateX(5px);
     }
 
     button {
@@ -112,14 +109,6 @@ $transition-speed: 0.3s ease-in-out;
       border-radius: 8px;
       @include transition(all);
 
-      &:hover {
-        background-color: $hover-bg;
-      }
-
-      &.active {
-        background-color: $active-bg;
-        box-shadow: $shadow;
-      }
     }
 
     .icon {
