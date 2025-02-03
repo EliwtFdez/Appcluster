@@ -26,12 +26,12 @@ export class SlidebardComponent {
 
   // Lista de ítems del menú
   menuItems = [
-    { icon: 'home', label: 'Registro de Viviendas', route: '/housing-registry' },
-    { icon: 'people', label: 'Gestión de Residentes', route: '/resident-management' },
-    { icon: 'security', label: 'Control de Acceso', route: '/access-control' },
-    { icon: 'build', label: 'Mantenimiento', route: '/maintenance' },
-    { icon: 'payment', label: 'Pagos y Facturación', route: '/billing' },
-    { icon: 'message', label: 'Comunicación', route: '/communication' },
+    { icon: 'home', label: 'Registro de Viviendas', route: '/registroviviendas' },
+    { icon: 'people', label: 'Gestión de Residentes', route: '/#' },
+    { icon: 'security', label: 'Control de Acceso', route: '/#' },
+    { icon: 'build', label: 'Mantenimiento', route: '/#' },
+    { icon: 'payment', label: 'Pagos y Facturación', route: '/#' },
+    { icon: 'message', label: 'Comunicación', route: '/#' },
   ];
 
   lastMenuItems = [

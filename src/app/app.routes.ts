@@ -19,4 +19,9 @@ export const routes: Routes = [
         path: 'home',
         loadComponent: () => import('./home/home.component').then(a =>a.HomeComponent)
     },
+    {
+        path: 'registroviviendas',
+        loadComponent: () => import('./desktop-home/registroviviendas/registroviviendas.component').then(a =>a.RegistroviviendasComponent)
+    },
+
 ];
