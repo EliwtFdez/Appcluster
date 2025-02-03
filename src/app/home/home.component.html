@@ -1,3 +1,5 @@
+<!-- Contenedor Principal -->
+<div class="parent" [ngClass]="{'sidebar-collapsed': isSidebarCollapsed}">
 
     <!-- Sidebar -->
     <app-slidebard (toggle)="onSidebarToggle($event)"></app-slidebard>
@@ -6,3 +8,5 @@
     <main class="div4">
         <p>local home</p>
     </main>
+
+</div>

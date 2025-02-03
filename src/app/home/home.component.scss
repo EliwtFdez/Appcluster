@@ -1,20 +1,30 @@
 :root {
     --sidebar-width: 250px;
+    --sidebar-collapsed-width: 60px; /* Ancho cuando el sidebar está colapsado */
     background-color: white;
     margin: 0;
 }
 
-.div4 {
+.parent {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: var(--sidebar-width) 1fr; /* Sidebar + contenido */
+    transition: grid-template-columns 0.3s ease;
+}
+
+/* Si el sidebar está colapsado */
+.parent.sidebar-collapsed {
+    grid-template-columns: var(--sidebar-collapsed-width) 1fr;
+}
+
+.div4 {
     background-color: #2d2d2d;
     padding: 0;
     border-radius: 0px;
     color: #ffffff;
-    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 /* Responsive */

@@ -22,7 +22,6 @@ $transition-speed: 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   box-shadow: $shadow;
-  @include transition(width);
   width: 250px;
   position: fixed;
   min-width: 80px;
