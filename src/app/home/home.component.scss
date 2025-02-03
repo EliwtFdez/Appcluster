@@ -15,6 +15,12 @@ $transition-speed: 0.3s ease-in-out;
   --active-bg: #{$active-bg};
 }
 
+body {
+  background-color: #2d2d2d; /* Gris claro para todo el fondo de la página */
+  margin: 0; /* Eliminar márgenes predeterminados del body */
+  padding: 0; /* Eliminar relleno predeterminado del body */
+}
+
 .sidebar {
   background-color: #fff;
   padding: 1rem;
