@@ -33,7 +33,7 @@ export class SlidebardComponent {
   menuItems = [
     { icon: 'home',      label: 'Registro de Viviendas',   route: `${this.urlbase}/registroviviendas` },
     { icon: 'people',    label: 'Gestión de Residentes',   route: `${this.urlbase}/gestionrecidencia` },
-    { icon: 'security',  label: 'Control de Acceso',       route: `${this.urlbase}/controlacceso` },
+    { icon: 'security',  label: 'Control de Acceso',       route: `${this.urlbase}/controlaccesso` },
     { icon: 'build',     label: 'Mantenimiento',           route: `${this.urlbase}/mantenimiento` },
     { icon: 'payment',   label: 'Pagos y Facturación',     route: `${this.urlbase}/pagofactura` },
     { icon: 'message',   label: 'Comunicación',            route: `${this.urlbase}/comunicacion` },
