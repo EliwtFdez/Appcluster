@@ -41,7 +41,7 @@ $transition-speed: 0.3s ease-in-out;
     }
 
     .label {
-        display: none; // Oculta el texto
+      display: none; // Oculta el texto
       opacity: 0;
       width: 0;
       @include transition(opacity, width);

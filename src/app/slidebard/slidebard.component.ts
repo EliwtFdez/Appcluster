@@ -9,17 +9,22 @@ import { BrowserModule } from '@angular/platform-browser';
 @Component({
   selector: 'app-slidebard',
   standalone: true,
-  imports: [CommonModule, MatIconModule, RouterModule, MatDividerModule, MatListModule, ],
+  imports: [CommonModule, MatIconModule, RouterModule, MatDividerModule, MatListModule],
   templateUrl: './slidebard.component.html',
   styleUrl: './slidebard.component.scss',
 })
 export class SlidebardComponent {
-  isCollapsed = false; 
-  @Output() toggle = new EventEmitter<boolean>(); // Emite el estado del sidebar
+  isCollapsed = false;
+  @Output() toggle = new EventEmitter<boolean>();
 
+  // Función para alternar el estado del sidebar
+  toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+    this.toggle.emit(this.isCollapsed);
+    console.log('Sidebar toggled');
+  }
 
-
-  // Lista principal de elementos del menú
+  // Lista de ítems del menú
   menuItems = [
     { icon: 'home', label: 'Registro de Viviendas', route: '/housing-registry' },
     { icon: 'people', label: 'Gestión de Residentes', route: '/resident-management' },
@@ -30,17 +35,7 @@ export class SlidebardComponent {
   ];
 
   lastMenuItems = [
-    { icon: 'exit_to_app', label: 'Cerrar sesión', route: '/login'},
-
+    { icon: 'exit_to_app', label: 'Cerrar sesión', route: '/login' },
     { icon: 'settings', label: 'Configuracion', route: '/config' },
-
   ];
-
-
-  // Función para alternar el estado del sidebar
-  toggleSidebar() {
-    this.isCollapsed = !this.isCollapsed;
-    this.toggle.emit(this.isCollapsed);
-  console.log('toggleslide func')
-  }
 }

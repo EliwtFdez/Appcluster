@@ -14,7 +14,9 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent {
   isSidebarCollapsed = false;
 
-  onSidebarToggle(collapsed: boolean) {
-    this.isSidebarCollapsed = collapsed;
+  onSidebarToggle(event: any): void {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
+
+
 }
