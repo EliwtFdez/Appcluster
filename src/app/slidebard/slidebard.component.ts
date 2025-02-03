@@ -5,10 +5,12 @@ import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { BrowserModule } from '@angular/platform-browser';
+import { ViviendaService } from '../services/registrovivienda.service';
 
 @Component({
   selector: 'app-slidebard',
   standalone: true,
+  providers: [ViviendaService],
   imports: [CommonModule, MatIconModule, RouterModule, MatDividerModule, MatListModule],
   templateUrl: './slidebard.component.html',
   styleUrl: './slidebard.component.scss',
@@ -16,6 +18,7 @@ import { BrowserModule } from '@angular/platform-browser';
 export class SlidebardComponent {
   isCollapsed = false;
   @Output() toggle = new EventEmitter<boolean>();
+  constructor(private viviendaService: ViviendaService) {}
 
   // Función para alternar el estado del sidebar
   toggleSidebar() {
@@ -26,7 +29,7 @@ export class SlidebardComponent {
 
   // Lista de ítems del menú
   menuItems = [
-    { icon: 'home', label: 'Registro de Viviendas', route: '/registroviviendas' },
+    { icon: 'home', label: 'Registro de Viviendas', route: '/home/registroviviendas' },
     { icon: 'people', label: 'Gestión de Residentes', route: '/#' },
     { icon: 'security', label: 'Control de Acceso', route: '/#' },
     { icon: 'build', label: 'Mantenimiento', route: '/#' },
@@ -38,4 +41,9 @@ export class SlidebardComponent {
     { icon: 'exit_to_app', label: 'Cerrar sesión', route: '/login' },
     { icon: 'settings', label: 'Configuracion', route: '/config' },
   ];
+
+  irAVivienda() {
+    this.viviendaService.actualizarEstado(true);
+  }
+
 }
