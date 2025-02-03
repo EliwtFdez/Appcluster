@@ -1,12 +1,10 @@
-// Variables de color y diseño
-$primary-color: #333; // rebeccapurple
+$primary-color: #333;
 $hover-bg: rgba(103, 58, 183, 0.1);
 $active-bg: rgba(103, 58, 183, 0.2);
 $border-color: #ddd;
 $shadow: 2px 2px 10px rgba(0, 0, 0, 0.08);
 $transition-speed: 0.3s ease-in-out;
 
-// Mixin para transiciones
 @mixin transition($properties...) {
   transition: $properties $transition-speed;
 }
@@ -17,12 +15,9 @@ $transition-speed: 0.3s ease-in-out;
   --active-bg: #{$active-bg};
 }
 
-// Sidebar principal
 .sidebar {
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 1rem;
-  border-radius: 0px;
-  color: $primary-color;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -33,7 +28,6 @@ $transition-speed: 0.3s ease-in-out;
   min-width: 80px;
   max-width: 250px;
 
-  // Estado colapsado
   &.collapsed {
     width: 80px;
 
@@ -41,20 +35,20 @@ $transition-speed: 0.3s ease-in-out;
       justify-content: center;
       padding: 8px;
       width: 50px;
-      
+
       button {
         padding: 8px;
       }
     }
 
     .label {
+        display: none; // Oculta el texto
       opacity: 0;
       width: 0;
       @include transition(opacity, width);
     }
   }
 
-  // Botón de colapsar
   .toggle-button {
     position: absolute;
     top: 1rem;
@@ -84,7 +78,6 @@ $transition-speed: 0.3s ease-in-out;
     }
   }
 
-  // Menú de opciones
   .menu {
     margin-top: 60px;
     flex-grow: 1;
@@ -92,7 +85,6 @@ $transition-speed: 0.3s ease-in-out;
     flex-direction: column;
   }
 
-  // Items del sidebar
   .sidebar-item {
     display: flex;
     align-items: center;
@@ -145,7 +137,6 @@ $transition-speed: 0.3s ease-in-out;
     }
   }
 
-  // Footer del sidebar
   .sidebar-footer {
     border-top: 1px solid $border-color;
     padding-top: 1rem;
