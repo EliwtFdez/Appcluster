@@ -19,6 +19,8 @@ export class SlidebardComponent {
   isCollapsed = false;
   @Output() toggle = new EventEmitter<boolean>();
   constructor(private viviendaService: ViviendaService) {}
+  urlbase = '/home';
+
 
   // Función para alternar el estado del sidebar
   toggleSidebar() {
@@ -29,17 +31,17 @@ export class SlidebardComponent {
 
   // Lista de ítems del menú
   menuItems = [
-    { icon: 'home', label: 'Registro de Viviendas', route: '/home/registroviviendas' },
-    { icon: 'people', label: 'Gestión de Residentes', route: '/#' },
-    { icon: 'security', label: 'Control de Acceso', route: '/#' },
-    { icon: 'build', label: 'Mantenimiento', route: '/#' },
-    { icon: 'payment', label: 'Pagos y Facturación', route: '/#' },
-    { icon: 'message', label: 'Comunicación', route: '/#' },
+    { icon: 'home',      label: 'Registro de Viviendas',   route: `${this.urlbase}/registroviviendas` },
+    { icon: 'people',    label: 'Gestión de Residentes',   route: `${this.urlbase}/gestionrecidencia` },
+    { icon: 'security',  label: 'Control de Acceso',       route: `${this.urlbase}/controlacceso` },
+    { icon: 'build',     label: 'Mantenimiento',           route: `${this.urlbase}/mantenimiento` },
+    { icon: 'payment',   label: 'Pagos y Facturación',     route: `${this.urlbase}/pagofactura` },
+    { icon: 'message',   label: 'Comunicación',            route: `${this.urlbase}/comunicacion` },
   ];
 
   lastMenuItems = [
     { icon: 'exit_to_app', label: 'Cerrar sesión', route: '/login' },
-    { icon: 'settings', label: 'Configuracion', route: '/config' },
+    { icon: 'settings',    label: 'Configuracion', route: `${this.urlbase}/configuracion` },
   ];
 
   irAVivienda() {

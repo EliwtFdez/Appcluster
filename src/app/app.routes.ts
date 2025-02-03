@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { GestionrecidenciaComponent } from './desktop-home/gestionrecidencia/gestionrecidencia.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,6 +18,31 @@ export const routes: Routes = [
             {
                 path: 'registroviviendas',
                 loadComponent: () => import('./desktop-home/registroviviendas/registroviviendas.component').then(m => m.RegistroviviendasComponent)
+            },
+            {
+                path: 'gestionrecidencia',
+                loadComponent: () => import('./desktop-home/gestionrecidencia/gestionrecidencia.component').then(m => m.GestionrecidenciaComponent)
+            },
+
+            {
+                path: 'controlaccesso',
+                loadComponent: () => import('./desktop-home/controlacceso/controlacceso.component').then(m => m.ControlaccesoComponent)
+            },
+            {
+                path: 'mantenimiento',
+                loadComponent: () => import('./desktop-home/mantenimiento/mantenimiento.component').then(m => m.MantenimientoComponent)
+            },
+            {
+                path: 'pagofactura',
+                loadComponent: () => import('./desktop-home/pagofactura/pagofactura.component').then(m => m.PagofacturaComponent)
+            },
+            {
+                path: 'comunicacion',
+                loadComponent: () => import('./desktop-home/comunicacion/comunicacion.component').then(m => m.ComunicacionComponent)
+            },         
+            {
+                path: 'configuracion',
+                loadComponent: () => import('./desktop-home/configuracion/configuracion.component').then(m => m.ConfiguracionComponent)
             }
         ]
     },
