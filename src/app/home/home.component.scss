@@ -6,53 +6,28 @@
 .parent {
   display: flex;
   height: 100vh;
-  width: 100%;
 }
 
 .sidebar {
   background-color: #1e1e1e;
-  height: 100vh;
   width: var(--sidebar-width);
   transition: width 0.3s ease;
-  position: relative; /* Para asegurarse de que el sidebar se quede fijo */
+}
 
-  &.collapsed {
-    width: var(--sidebar-collapsed-width);
-  }
-
-  /* Si el sidebar tiene un slide o contenido dinámico, se puede controlar en esta sección */
-  .slide-content {
-    transition: transform 0.3s ease;
-  }
+.sidebar.sidebar-collapsed {
+  width: var(--sidebar-collapsed-width);
 }
 
 .mainContent {
   flex-grow: 1;
-  height: 100vh;
-  overflow: hidden;
-  transition: margin-left 0.3s ease, transform 0.3s ease;
+  transition: margin-left 0.3s ease;
+  margin-left: var(--sidebar-width);
 
-  /* Si el sidebar está colapsado, mover el contenido */
   &.sidebar-collapsed {
     margin-left: var(--sidebar-collapsed-width);
   }
-
-  img {
-    width: 100%;
-    height: auto;
-  }
 }
 
-@media (max-width: 768px) {
-  .parent {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-  }
-
-  .mainContent {
-    margin-left: 0;
-  }
+.sidebar-collapsed ~ .mainContent {
+  margin-left: var(--sidebar-collapsed-width);
 }

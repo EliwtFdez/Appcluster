@@ -3,7 +3,7 @@
   <app-slidebard class="sidebar" (toggle)="onSidebarToggle($event)"></app-slidebard>
 
   <!-- Main content -->
-  <main class="mainContent">
+  <main class="mainContent" [ngClass]="{'sidebar-collapsed': isSidebarCollapsed}">
     <img src="../../assets/img/image.png" alt="Descripción de la imagen">
   </main>
 </div>
