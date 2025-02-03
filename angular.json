@@ -29,6 +29,21 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "src",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/static",
+                "output": "/static"
               }
             ],
             "styles": [
@@ -85,12 +100,27 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+          "assets": [
+            {
+              "glob": "**/*",
+              "input": "public"
+            },
+            {
+              "glob": "favicon.ico",
+              "input": "src",
+              "output": "/"
+            },
+            {
+              "glob": "**/*",
+              "input": "src/assets",
+              "output": "/assets"
+            },
+            {
+              "glob": "**/*",
+              "input": "src/static",
+              "output": "/static"
+            }
+          ],
             "styles": [
               "@angular/material/prebuilt-themes/magenta-violet.css",
               "src/styles.scss"

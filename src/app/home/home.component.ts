@@ -7,18 +7,14 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, SlidebardComponent, RouterModule, MatIconModule,], // NOOO usar BrowserModule
+  imports: [CommonModule, SlidebardComponent, RouterModule, MatIconModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  isSidebarCollapsed = false;
 
-
-isSidebarCollapsed = false;
-
-onSidebarToggle(collapsed: boolean) {
+  onSidebarToggle(collapsed: boolean) {
     this.isSidebarCollapsed = collapsed;
-}
-
-
+  }
 }

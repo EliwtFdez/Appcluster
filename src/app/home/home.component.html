@@ -1,12 +1,9 @@
-<!-- Contenedor Principal -->
 <div class="parent" [ngClass]="{'sidebar-collapsed': isSidebarCollapsed}">
+  <!-- Sidebar -->
+  <app-slidebard class="sidebar" (toggle)="onSidebarToggle($event)"></app-slidebard>
 
-    <!-- Sidebar -->
-    <app-slidebard (toggle)="onSidebarToggle($event)"></app-slidebard>
-
-    <!-- Main content -->
-    <main class="div4">
-        <p>local home</p>
-    </main>
-
+  <!-- Main content -->
+  <main class="mainContent">
+    <img src="../../assets/img/image.png" alt="Descripción de la imagen">
+  </main>
 </div>

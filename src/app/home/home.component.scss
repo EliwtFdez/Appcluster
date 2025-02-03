@@ -1,35 +1,58 @@
 :root {
-    --sidebar-width: 250px;
-    --sidebar-collapsed-width: 60px; /* Ancho cuando el sidebar está colapsado */
-    background-color: white;
-    margin: 0;
+  --sidebar-width: 250px;
+  --sidebar-collapsed-width: 80px;
 }
 
 .parent {
-    display: grid;
-    grid-template-columns: var(--sidebar-width) 1fr; /* Sidebar + contenido */
-    transition: grid-template-columns 0.3s ease;
+  display: flex;
+  height: 100vh;
+  width: 100%;
 }
 
-/* Si el sidebar está colapsado */
-.parent.sidebar-collapsed {
-    grid-template-columns: var(--sidebar-collapsed-width) 1fr;
+.sidebar {
+  background-color: #1e1e1e;
+  height: 100vh;
+  width: var(--sidebar-width);
+  transition: width 0.3s ease;
+  position: relative; /* Para asegurarse de que el sidebar se quede fijo */
+
+  &.collapsed {
+    width: var(--sidebar-collapsed-width);
+  }
+
+  /* Si el sidebar tiene un slide o contenido dinámico, se puede controlar en esta sección */
+  .slide-content {
+    transition: transform 0.3s ease;
+  }
 }
 
-.div4 {
-    background-color: #2d2d2d;
-    padding: 0;
-    border-radius: 0px;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+.mainContent {
+  flex-grow: 1;
+  height: 100vh;
+  overflow: hidden;
+  transition: margin-left 0.3s ease, transform 0.3s ease;
+
+  /* Si el sidebar está colapsado, mover el contenido */
+  &.sidebar-collapsed {
+    margin-left: var(--sidebar-collapsed-width);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-    .parent {
-        grid-template-columns: 1fr;
-    }
+  .parent {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .mainContent {
+    margin-left: 0;
+  }
 }
