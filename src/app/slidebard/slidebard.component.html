@@ -1,33 +1,31 @@
 <div class="sidebar" [class.collapsed]="isCollapsed">
-    <!-- Botón para ocultar/desplegar el sidebar -->
-    <button class="toggle-button" (click)="toggleSidebar()">
-<img src="assets/iconslide.png" alt="Logo" class="logo">
-    </button>
+  <button class="toggle-button" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+    <mat-icon class="logo">{{ isCollapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+  </button>
 
-
-    <!-- Lista principal de configuraciones -->
-    <div class="menu">
-        <div class="sidebar-item" *ngFor="let item of menuItems">
-            <button [routerLink]="item.route" routerLinkActive="active">
-                <mat-icon class="icon">{{ item.icon }}</mat-icon>
-                <span class="label">{{ item.label }}</span>
-            </button>
-        </div>
+  <nav class="menu" aria-label="Main navigation">
+    <div class="sidebar-item" *ngFor="let item of menuItems">
+      <button [routerLink]="item.route" 
+              routerLinkActive="active"
+              [attr.aria-label]="item.label">
+        <mat-icon class="icon">{{ item.icon }}</mat-icon>
+        <span class="label">{{ item.label }}</span>
+      </button>
     </div>
+  </nav>
 
-    <!-- Espacio extra entre las secciones -->
-    <div class="spacer"></div>
+  <div class="spacer"></div>
 
-    <!-- Divisor inferior -->
-    <mat-divider></mat-divider>
+  <mat-divider></mat-divider>
 
-    <!-- Opciones de usuario -->
-    <div class="sidebar-footer">
-        <div class="sidebar-item" *ngFor="let item of lastMenuItems">
-             <button [routerLink]="item.route" routerLinkActive="active">
-                <mat-icon class="icon">{{ item.icon }}</mat-icon>
-                <span class="label">{{ item.label }}</span>
-            </button>
-        </div>
+  <nav class="sidebar-footer" aria-label="Secondary navigation">
+    <div class="sidebar-item" *ngFor="let item of lastMenuItems">
+      <button [routerLink]="item.route" 
+              routerLinkActive="active"
+              [attr.aria-label]="item.label">
+        <mat-icon class="icon">{{ item.icon }}</mat-icon>
+        <span class="label">{{ item.label }}</span>
+      </button>
     </div>
+  </nav>
 </div>
