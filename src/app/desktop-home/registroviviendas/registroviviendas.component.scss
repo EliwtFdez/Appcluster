@@ -1,0 +1,87 @@
+$primary-color: #2C3E50;
+$secondary-color: #34495E;
+$tertiary-color: #1F2A44;
+$accent-color: #16A085;
+$highlight-color: #8E44AD;
+$dark-gray: #2E4053;
+$carbon-gray: #3B3B3B;
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: $primary-color;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h2 {
+  text-align: center;
+  color: $highlight-color;
+}
+
+form {
+  background: $secondary-color;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px;
+}
+
+div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  color: $accent-color;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid $tertiary-color;
+  border-radius: 4px;
+  background-color: $dark-gray;
+  color: white;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: $highlight-color;
+  box-shadow: 0 0 5px rgba(142, 68, 173, 0.8);
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: $accent-color;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: darken($accent-color, 10%);
+}
+
+button:disabled {
+  background-color: $carbon-gray;
+  cursor: not-allowed;
+}
+
+button:last-of-type {
+  background-color: $highlight-color;
+  margin-top: 10px;
+}
+
+button:last-of-type:hover {
+  background-color: darken($highlight-color, 10%);
+}

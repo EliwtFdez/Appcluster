@@ -1,1 +1,53 @@
-<h1>registroviviendas works!</h1>
+<h2>Registro de Viviendas</h2>
+<form [formGroup]="viviendaForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="clusterId">ID del Cluster:</label>
+    <input id="clusterId" formControlName="clusterId" type="text">
+    <div *ngIf="viviendaForm.get('clusterId')?.invalid && viviendaForm.get('clusterId')?.touched">
+      El ID del cluster es requerido.
+    </div>
+  </div>
+
+  <div>
+    <label for="numeroCasa">Número de Casa:</label>
+    <input id="numeroCasa" formControlName="numeroCasa" type="text">
+    <div *ngIf="viviendaForm.get('numeroCasa')?.invalid && viviendaForm.get('numeroCasa')?.touched">
+      El número de casa es requerido.
+    </div>
+  </div>
+
+  <div>
+    <label for="direccion">Dirección:</label>
+    <input id="direccion" formControlName="direccion" type="text">
+    <div *ngIf="viviendaForm.get('direccion')?.invalid && viviendaForm.get('direccion')?.touched">
+      La dirección es requerida.
+    </div>
+  </div>
+
+  <div>
+    <label for="habitaciones">Habitaciones:</label>
+    <input id="habitaciones" formControlName="habitaciones" type="number">
+    <div *ngIf="viviendaForm.get('habitaciones')?.invalid && viviendaForm.get('habitaciones')?.touched">
+      Debe haber al menos una habitación.
+    </div>
+  </div>
+
+  <div>
+    <label for="precio">Precio:</label>
+    <input id="precio" formControlName="precio" type="number">
+    <div *ngIf="viviendaForm.get('precio')?.invalid && viviendaForm.get('precio')?.touched">
+      El precio debe ser mayor o igual a 0.
+    </div>
+  </div>
+
+  <div>
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" formControlName="descripcion"></textarea>
+  </div>
+
+  <button type="submit" [disabled]="viviendaForm.invalid">Registrar Vivienda</button>
+</form>
+
+<button (click)="cambiarEstado()">
+  {{ estadoVivienda ? 'Desactivar' : 'Activar' }} Estado
+</button>

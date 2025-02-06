@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { BrowserModule } from '@angular/platform-browser';
-import { ViviendaService } from '../services/registrovivienda.service';
+import { ViviendaService } from '../../services/registrovivienda.service';
 
 @Component({
   selector: 'app-slidebard',
