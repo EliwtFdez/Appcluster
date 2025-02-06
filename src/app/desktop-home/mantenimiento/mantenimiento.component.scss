@@ -1,4 +1,5 @@
-// Colores
+@use 'sass:color';
+
 $primary-color: #2C3E50;
 $secondary-color: #34495E;
 $accent-color: #16A085;
@@ -63,8 +64,8 @@ h2 {
   cursor: pointer;
   transition: background 0.3s;
 
-  &:hover {
-    background-color: darken($accent-color, 10%);
+  &:hover {  
+    background-color: color.adjust($primary-color, $lightness: -10%);
   }
 
   &:disabled {

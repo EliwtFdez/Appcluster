@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $primary-color: #2C3E50;
 $secondary-color: #34495E;
 $tertiary-color: #1F2A44;
@@ -110,6 +112,5 @@ input:checked + .slider:before {
   transition: background 0.3s;
 
   &:hover {
-    background-color: darken($highlight-color, 10%);
-  }
+   background-color: color.adjust($primary-color, $lightness: -10%);  }
 }

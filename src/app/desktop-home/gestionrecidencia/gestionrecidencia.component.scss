@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $primary-color: #2C3E50;
 $secondary-color: #34495E;
 $tertiary-color: #1F2A44;
@@ -71,7 +73,7 @@ button {
   margin-top: 5px;
 
   &:hover {
-    background-color: mix($accent-color, black, 10%);
+     background-color: color.mix($accent-color, black, 10%);
   }
 
   &:disabled {
