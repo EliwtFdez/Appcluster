@@ -1,0 +1,119 @@
+$primary-color: #2C3E50;
+$secondary-color: #34495E;
+$tertiary-color: #1F2A44;
+$accent-color: #16A085;
+$highlight-color: #8E44AD;
+$dark-gray: #2E4053;
+$carbon-gray: #3B3B3B;
+
+.container {
+  font-family: Arial, sans-serif;
+  background-color: $primary-color;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  color: $highlight-color;
+  text-align: center;
+  width: 100%;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+  }
+  a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    &:hover {
+      color: $accent-color;
+    }
+  }
+}
+
+.residentes, .futuros-residentes {
+  width: 90%;
+  background: $secondary-color;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: $accent-color;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 5px;
+
+  &:hover {
+    background-color: mix($accent-color, black, 10%);
+  }
+
+  &:disabled {
+    background-color: $carbon-gray;
+    cursor: not-allowed;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+li {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  color: $accent-color;
+  margin-bottom: 5px;
+}
+
+input {
+  width:auto;
+  padding: 1px;
+  border: 1px solid $tertiary-color;
+  border-radius: 4px;
+  background-color: $dark-gray;
+  color: white;
+  &:focus {
+    outline: none;
+    border-color: $highlight-color;
+    box-shadow: 0 0 5px rgba(142, 68, 173, 0.8);
+  }
+}
