@@ -1,1 +1,24 @@
-<p>gestionrecidencia works!</p>
+<div class="container">
+  <h1>Gestión de Residencia</h1>
+  
+  <nav>
+    <ul>
+      <li><a routerLink="/dashboard">Dashboard</a></li>
+      <li><a routerLink="/residentes">Residentes</a></li>
+      <li><a routerLink="/pagos">Pagos</a></li>
+      <li><a routerLink="/mantenimiento">Mantenimiento</a></li>
+    </ul>
+  </nav>
+  
+  <div class="residentes">
+    <h2>Lista de Residentes</h2>
+    <button (click)="agregarResidente()">Agregar Residente</button>
+    <ul>
+      <li *ngFor="let residente of residentes">
+        {{ residente.nombre }} - {{ residente.edad }} años
+        <button (click)="editarResidente(residente)">Editar</button>
+        <button (click)="eliminarResidente(residente)">Eliminar</button>
+      </li>
+    </ul>
+  </div>
+</div>
