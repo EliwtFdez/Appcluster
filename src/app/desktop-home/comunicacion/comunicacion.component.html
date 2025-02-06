@@ -1,1 +1,42 @@
-<p>comunicacion works!</p>
+<div class="container">
+  <h2>Pagos y Facturas</h2>
+  <ul class="pagos-list">
+    <li *ngFor="let casa of casas; trackBy: trackById" class="casa-item">
+      <span class="casa-nombre">
+        {{ casa.nombre }} - 
+        <span [class.completado]="casa.mantenimiento">
+          {{ casa.mantenimiento ? 'Completado' : 'Pendiente' }}
+        </span>
+      </span>
+      <button 
+        class="btn-mantenimiento"
+        (click)="completarMantenimiento(casa)"
+        [disabled]="casa.mantenimiento"
+        aria-label="Marcar como completado">
+        ✔
+      </button>
+      
+      <!-- Sección de Pagos y Facturas -->
+      <div class="pagos-facturas">
+        <h3>Pagos y Facturas de {{ casa.nombre }}</h3>
+        <ul>
+          <li *ngFor="let pago of casa.pagos" class="pago-item">
+            <span class="pago-descripcion">{{ pago.descripcion }}</span>
+            <span class="pago-monto">{{ pago.monto | currency }}</span>
+            <span class="pago-fecha">{{ pago.fecha | date }}</span>
+            <span [class.pagado]="pago.pagado" class="pago-estado">
+              {{ pago.pagado ? 'Pagado' : 'Pendiente' }}
+            </span>
+            <button 
+              class="btn-pagar"
+              (click)="marcarComoPagado(pago)"
+              [disabled]="pago.pagado"
+              aria-label="Marcar como pagado">
+              ✔
+            </button>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>

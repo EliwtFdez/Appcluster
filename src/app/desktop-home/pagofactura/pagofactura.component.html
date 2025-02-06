@@ -1,1 +1,15 @@
-<p>pagofactura works!</p>
+<div class="container">
+  <h2>📄 Pagos y Facturas</h2>
+  <ul class="facturas-list">
+    <li *ngFor="let factura of facturas; trackBy: trackById" class="factura-item">
+      <div class="factura-info">
+        <span class="factura-nombre"><strong>🔹 {{ factura.nombre }}</strong></span>
+        <span class="factura-casa">🏠 {{ factura.casa }}</span>
+        <span class="factura-total">💲 {{ factura.total | currency }}</span>
+      </div>
+      <button class="btn-imprimir" aria-label="Imprimir Ticket">
+        🖨️ Imprimir Ticket
+      </button>
+    </li>
+  </ul>
+</div>
