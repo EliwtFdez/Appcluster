@@ -12,6 +12,9 @@ import { Vivienda } from '../../../models/vivienda.models'; // Ensure this path 
   styleUrls: ['./registroviviendas.component.scss']
 })
 export class RegistroviviendasComponent implements OnInit {
+ShowTablesRegisters() {
+throw new Error('Method not implemented.');
+}
   estadoVivienda: boolean = false;
   viviendaForm: FormGroup;
  
