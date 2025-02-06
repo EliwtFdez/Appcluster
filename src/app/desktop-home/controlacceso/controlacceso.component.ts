@@ -1,8 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-controlacceso',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './controlacceso.component.html',
   styleUrl: './controlacceso.component.scss'
 })

@@ -1,8 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-gestionrecidencia',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './gestionrecidencia.component.html',
   styleUrl: './gestionrecidencia.component.scss'
 })
