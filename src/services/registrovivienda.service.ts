@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root' // Esto hace que Angular lo reconozca en toda la aplicación
+  providedIn: 'root' 
 })
 export class ViviendaService {
+  [x: string]: any;
   private viviendaStatus = new BehaviorSubject<boolean>(false);
   viviendaStatus$ = this.viviendaStatus.asObservable();
 

@@ -4,7 +4,7 @@ import { SlidebardComponent } from '../slidebard/slidebard.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RegistroviviendasComponent } from '../desktop-home/registroviviendas/registroviviendas.component';
-import { ViviendaService } from '../services/registrovivienda.service';
+import { ViviendaService } from '../../services/registrovivienda.service';
 import { ComunicacionComponent } from '../desktop-home/comunicacion/comunicacion.component';
 import { GestionrecidenciaComponent } from '../desktop-home/gestionrecidencia/gestionrecidencia.component';
 import { ControlaccesoComponent } from '../desktop-home/controlacceso/controlacceso.component';

@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $primary-color: #ffffff;
 $hover-bg: rgba(0, 0, 0, 0.314);
 $border-color: #f16b6b;
@@ -63,10 +65,10 @@ $transition-speed: 0.3s ease-in-out;
     align-items: center;
     justify-content: center;
 
-    &:hover {
+  &:hover {
       transform: translateX(-50%) scale(1.1);
-      background: darken($primary-color, 10%);
-    }
+      background-color: color.adjust($primary-color, $lightness: -10%);
+  }
 
     .logo {
       width: 24px;

@@ -1,0 +1,100 @@
+$primary-color: #2C3E50;
+$secondary-color: #34495E;
+$tertiary-color: #1F2A44;
+$accent-color: #16A085;
+$highlight-color: #8E44AD;
+$dark-gray: #2E4053;
+$carbon-gray: #3B3B3B;
+
+h2 {
+  text-align: center;
+  color: $highlight-color;
+  margin-bottom: 10px;
+}
+
+form {
+  background: $secondary-color;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 450px;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  color: $accent-color;
+  margin-bottom: 5px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid $tertiary-color;
+  border-radius: 4px;
+  background-color: $dark-gray;
+  color: white;
+  resize: none;
+
+  &:focus {
+    outline: none;
+    border-color: $highlight-color;
+    box-shadow: 0 0 5px rgba(142, 68, 173, 0.8);
+  }
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: $accent-color;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 5px;
+
+  &:hover {
+    background-color: mix($accent-color, black, 10%);
+  }
+
+  &:disabled {
+    background-color: $carbon-gray;
+    cursor: not-allowed;
+  }
+}
+
+.parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.body {
+  font-family: Arial, sans-serif;
+  background-color: $primary-color;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.div3, .div5, .div7 {
+  width: 100%;
+  max-width: 450px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
