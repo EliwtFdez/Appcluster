@@ -6,10 +6,16 @@ import { Component } from '@angular/core';
   templateUrl: './gestionrecidencia.component.html',
   styleUrl: './gestionrecidencia.component.scss'
 })
+
 export class GestionrecidenciaComponent {
- residentes = [
+  residentes = [
     { nombre: 'Juan Pérez', edad: 35 },
     { nombre: 'María González', edad: 28 }
+  ];
+  
+  futurosResidentes = [
+    { nombre: 'Carlos López', edad: 30 },
+    { nombre: 'Ana Torres', edad: 27 }
   ];
 
   agregarResidente() {
