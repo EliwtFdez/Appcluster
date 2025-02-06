@@ -1,1 +1,49 @@
-<p>configuracion works!</p>
+<div class="container">
+  <h2>⚙️ Configuración</h2>
+
+  <!--Sección de Ajustes del Usuario -->
+  <div class="section">
+    <h3>👤 Ajustes del Usuario</h3>
+    
+    <div class="user-profile">
+      <label for="fotoPerfil" class="upload-label">
+        <img [src]="fotoPerfil || 'assets/default-user.png'" alt="Foto de Perfil" class="foto-perfil">
+        <input type="file" id="fotoPerfil" (change)="cambiarFoto($event)">
+      </label>
+
+      <input type="text" [(ngModel)]="nombreUsuario" placeholder="Nombre de Usuario">
+      <input type="email" [(ngModel)]="correo" placeholder="Correo Electrónico">
+      <input type="password" [(ngModel)]="password" placeholder="Contraseña">
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>🔧 Preferencias</h3>
+
+    <div class="setting-item">
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="modoOscuro" (change)="guardarConfiguracion()">
+        <span class="slider"></span>
+      </label>
+      <span>🌙 Modo Oscuro</span>
+    </div>
+
+    <div class="setting-item">
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="notificaciones" (change)="guardarConfiguracion()">
+        <span class="slider"></span>
+      </label>
+      <span>🔔 Notificaciones</span>
+    </div>
+
+    <div class="setting-item">
+      <label for="idioma">🌍 Idioma:</label>
+      <select id="idioma" [(ngModel)]="idiomaSeleccionado" (change)="guardarConfiguracion()">
+        <option *ngFor="let idioma of idiomas" [value]="idioma">{{ idioma }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!--  Botón de Restablecer -->
+  <button class="btn-reset" (click)="resetearConfiguracion()">🔄 Restablecer Configuración</button>
+</div>
