@@ -3,11 +3,24 @@
     <div class="login-container">
       <div class="login-card">
         <h1 class="title">Registro</h1>
-        <form (ngSubmit)="handleRegister()" class="register-form">
+        <form (ngSubmit)="handleRegister()" class="register-form" #registerForm="ngForm">
+
           <!-- Campo de Nombre -->
           <mat-form-field appearance="outline" class="input">
             <mat-label>Nombre</mat-label>
-            <input matInput type="text" required />
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="username"
+              name="username"
+              required
+              #firstInput="ngModel"
+              aria-label="Nombre"
+              autocomplete="name"
+            />
+            <mat-error *ngIf="firstInput.invalid && firstInput.touched">
+              El nombre es obligatorio.
+            </mat-error>
           </mat-form-field>
 
           <!-- Campo de Email -->
@@ -15,31 +28,57 @@
             <mat-label>Email</mat-label>
             <input
               matInput
-              [(ngModel)]="email"
-              (input)="error = ''"
               type="email"
-              placeholder="Enter your email"
-              [disabled]="isLoading"
+              [(ngModel)]="email"
+              name="email"
               required
+              #emailInput="ngModel"
+              aria-label="Correo electrónico"
+              autocomplete="email"
+              (input)="error = ''"
+              [disabled]="isLoading"
             />
+            <mat-error *ngIf="emailInput.invalid && emailInput.touched">
+              Introduce un email válido.
+            </mat-error>
           </mat-form-field>
 
-          <!-- Campo de Número de Casa -->
+          <!-- Campo de Número de Casa (Selección del 1 al 60) -->
           <mat-form-field appearance="outline" class="input">
-            <mat-label>Num. de casa</mat-label>
-            <input matInput type="number" required />
+            <mat-label>Número de Casa</mat-label>
+            <mat-select [(ngModel)]="houseNumber" name="houseNumber" required>
+              <mat-option *ngFor="let number of houseNumbers" [value]="number">
+                {{ number }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
           <!-- Campo de Contraseña -->
           <mat-form-field appearance="outline" class="input">
             <mat-label>Contraseña</mat-label>
-            <input matInput type="password" required />
+            <input
+              matInput
+              type="password"
+              [(ngModel)]="password"
+              name="password"
+              required
+              aria-label="Contraseña"
+              autocomplete="new-password"
+            />
           </mat-form-field>
 
           <!-- Campo de Confirmar Contraseña -->
           <mat-form-field appearance="outline" class="input">
             <mat-label>Confirmar Contraseña</mat-label>
-            <input matInput type="password" required />
+            <input
+              matInput
+              type="password"
+              [(ngModel)]="confirmPassword"
+              name="confirmPassword"
+              required
+              aria-label="Confirmar Contraseña"
+              autocomplete="new-password"
+            />
           </mat-form-field>
 
           <!-- Botón de Registro -->
@@ -48,26 +87,17 @@
             color="primary"
             class="register-button"
             type="submit"
-            [disabled]="isLoading"
+            [disabled]="registerForm.invalid || isLoading"
           >
             <span *ngIf="!isLoading">Registrarse</span>
-            <mat-spinner
-              *ngIf="isLoading"
-              diameter="20"
-              class="spinner"
-            ></mat-spinner>
+            <mat-spinner *ngIf="isLoading" diameter="20" class="spinner"></mat-spinner>
           </button>
 
           <!-- Enlace para Iniciar Sesión -->
           <div class="toggle-form">
             <p>
               ¿Ya tienes una cuenta?
-              <a
-                [routerLink]="['/login']"
-                routerLinkActive="router-link-active"
-                class="toggle-link"
-                >Inicia sesión</a
-              >
+              <a [routerLink]="['/login']" class="toggle-link">Inicia sesión</a>
             </p>
           </div>
         </form>
