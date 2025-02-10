@@ -2,43 +2,74 @@
   <div class="div3">
     <div class="login-container">
       <div class="login-card">
-        <h1>Registro</h1>
-        <form>
-          <mat-form-field appearance="fill">
+        <h1 class="title">Registro</h1>
+        <form (ngSubmit)="handleRegister()" class="register-form">
+          <!-- Campo de Nombre -->
+          <mat-form-field appearance="outline" class="input">
             <mat-label>Nombre</mat-label>
             <input matInput type="text" required />
           </mat-form-field>
 
-          <mat-form-field appearance="fill">
+          <!-- Campo de Email -->
+          <mat-form-field appearance="outline" class="input">
             <mat-label>Email</mat-label>
-            <input matInput type="email" required />
+            <input
+              matInput
+              [(ngModel)]="email"
+              (input)="error = ''"
+              type="email"
+              placeholder="Enter your email"
+              [disabled]="isLoading"
+              required
+            />
           </mat-form-field>
 
-          <mat-form-field appearance="fill">
+          <!-- Campo de Número de Casa -->
+          <mat-form-field appearance="outline" class="input">
             <mat-label>Num. de casa</mat-label>
             <input matInput type="number" required />
           </mat-form-field>
 
-
-          <mat-form-field appearance="fill">
+          <!-- Campo de Contraseña -->
+          <mat-form-field appearance="outline" class="input">
             <mat-label>Contraseña</mat-label>
             <input matInput type="password" required />
           </mat-form-field>
 
-          <mat-form-field appearance="fill">
+          <!-- Campo de Confirmar Contraseña -->
+          <mat-form-field appearance="outline" class="input">
             <mat-label>Confirmar Contraseña</mat-label>
             <input matInput type="password" required />
           </mat-form-field>
 
-          <button mat-raised-button color="primary" class="register-button">
-            Registrarse
+          <!-- Botón de Registro -->
+          <button
+            mat-raised-button
+            color="primary"
+            class="register-button"
+            type="submit"
+            [disabled]="isLoading"
+          >
+            <span *ngIf="!isLoading">Registrarse</span>
+            <mat-spinner
+              *ngIf="isLoading"
+              diameter="20"
+              class="spinner"
+            ></mat-spinner>
           </button>
 
-            <div class="toggle-form">
-                <a [routerLink]="['/login']" routerLinkActive="router-link-active"  class="toggle-link">¿Ya tienes una cuenta? Inicia sesión</a>
-            </div>
-       <!-- Crear una animacion donde este una animacion de carga cada vez que se produsca un evento click en los botones-->
-
+          <!-- Enlace para Iniciar Sesión -->
+          <div class="toggle-form">
+            <p>
+              ¿Ya tienes una cuenta?
+              <a
+                [routerLink]="['/login']"
+                routerLinkActive="router-link-active"
+                class="toggle-link"
+                >Inicia sesión</a
+              >
+            </p>
+          </div>
         </form>
       </div>
     </div>
