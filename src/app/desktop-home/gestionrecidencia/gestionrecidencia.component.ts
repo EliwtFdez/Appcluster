@@ -13,19 +13,21 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export class RegistroResidentesComponent implements OnInit {
 
   currentView: 'lista' | 'formulario' = 'lista';
-  // Arreglo para almacenar los residentes
   residentes: any[] = [];
-  // Formulario para registrar un residente
+  casas: any[] = []; // Array para almacenar las casas
   residenteForm: FormGroup;
-  // URL base de la API para residentes
   private baseApiUrl = 'http://localhost:5112/api/Residentes';
+  private casasApiUrl = 'http://localhost:5112/api/Casas'; // URL para obtener las casas
 
-  // Configuración del formulario, acorde a la estructura: Nombre, Teléfono, Email, IdCasa
-  constructor( private fb: FormBuilder, private http: HttpClient  ) {
+  // Track the ID of the resident being edited
+  editingResidenteId: number | null = null;
+
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.residenteForm = this.fb.group({
       nombre: ['', Validators.required],
       telefono: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      // Aquí se guarda el idCasa pero el usuario solo verá el nombre en el select
       idCasa: ['', Validators.required]
     });
   }
@@ -36,6 +38,7 @@ export class RegistroResidentesComponent implements OnInit {
 
   ngOnInit() {
     this.cargarResidentes();
+    this.cargarCasas(); // Cargar la lista de casas para el select
   }
 
   // Método para cargar los residentes desde la API
@@ -51,40 +54,78 @@ export class RegistroResidentesComponent implements OnInit {
     });
   }
 
-  // Enviar formulario para registrar un residente
+  // Método para cargar las casas desde la API
+  cargarCasas() {
+    this.http.get<any[]>(this.casasApiUrl).subscribe({
+      next: (data) => {
+        this.casas = data;
+        console.log('Casas cargadas:', this.casas);
+      },
+      error: (error) => {
+        console.error('Error al cargar las casas:', error);
+      }
+    });
+  }
+
+  getNumeroCasaPorId(idCasa: number): string {
+    const casaEncontrada = this.casas.find(c => c.idCasa === idCasa);
+    return casaEncontrada ? casaEncontrada.numeroCasa : 'N/A';
+  }
+
+
+  // Enviar formulario para registrar o actualizar un residente
   onSubmit() {
     if (this.residenteForm.valid) {
-      this.http.post(this.baseApiUrl, this.residenteForm.value).subscribe({
-        next: (response) => {
-          console.log('Residente registrado:', response);
-          this.cargarResidentes();
-          this.residenteForm.reset();
-        },
-        error: (error) => {
-          console.error('Error al registrar el residente:', error);
-        }
-      });
+      const formData = this.residenteForm.value;
+      if (this.editingResidenteId !== null) {
+        const payload = { idResidente: this.editingResidenteId, ...formData };
+        this.http.put(`${this.baseApiUrl}/${this.editingResidenteId}`, payload).subscribe({
+          next: (response) => {
+            console.log('Residente actualizado:', response);
+            this.cargarResidentes();
+            this.residenteForm.reset();
+            this.editingResidenteId = null;
+            this.toggleView('lista');
+          },
+          error: (error) => {
+            console.error('Error al actualizar el residente:', error);
+          }
+        });
+      } else {
+        this.http.post(this.baseApiUrl, formData).subscribe({
+          next: (response) => {
+            console.log('Residente registrado:', response);
+            this.cargarResidentes();
+            this.residenteForm.reset();
+          },
+          error: (error) => {
+            console.error('Error al registrar el residente:', error);
+          }
+        });
+      }
     }
   }
 
-  // Método para editar un residente (implementación a tu criterio)
+  // Método para editar un residente: pobla el formulario y cambia a la vista de formulario
   editarResidente(residente: any) {
     console.log('Editing resident:', residente);
-    // Ejemplo: Poblar el formulario con los datos del residente a editar
     this.residenteForm.patchValue({
       nombre: residente.nombre,
       telefono: residente.telefono,
       email: residente.email,
-      idCasa: residente.idCasa
+      idCasa: residente.idCasa // Se asigna el idCasa existente
     });
+    this.editingResidenteId = residente.idResidente || residente.id;
+    this.toggleView('formulario');
   }
 
-  // Eliminar residente mediante el API
-  eliminarResidente(idResidente: number) {
+  // Eliminar residente mediante la API
+  eliminarResidente(residente: any) {
+    const id = residente.idResidente || residente.id;
     if (confirm('¿Estás seguro de que deseas eliminar este residente?')) {
-      this.http.delete(`${this.baseApiUrl}/${idResidente}`).subscribe({
+      this.http.delete(`${this.baseApiUrl}/${id}`).subscribe({
         next: () => {
-          console.log('Residente eliminado:', idResidente);
+          console.log('Residente eliminado:', id);
           this.cargarResidentes();
         },
         error: (error) => {

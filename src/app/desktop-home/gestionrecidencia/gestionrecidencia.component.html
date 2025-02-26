@@ -4,6 +4,21 @@
     <div class="form-container">
       <h2>Registro de Residentes</h2>
       <form [formGroup]="residenteForm" (ngSubmit)="onSubmit()">
+        <!-- Campo: Número de Casa (select) -->
+        <div class="form-group">
+          <label for="idCasa" class="form-label">Número de Casa:</label>
+          <select id="idCasa" formControlName="idCasa" class="form-control">
+            <option value="" disabled>Seleccione una casa</option>
+            <option *ngFor="let casa of casas" [value]="casa.idCasa">
+              {{ casa.numeroCasa }}
+            </option>
+          </select>
+          <div *ngIf="residenteForm.get('idCasa')?.invalid && residenteForm.get('idCasa')?.touched" class="error-message">
+            El número de casa es requerido.
+          </div>
+        </div>
+
+        <!-- Campo: Nombre -->
         <div class="form-group">
           <label for="nombre" class="form-label">Nombre:</label>
           <input id="nombre"
@@ -16,6 +31,7 @@
           </div>
         </div>
 
+        <!-- Campo: Email -->
         <div class="form-group">
           <label for="email" class="form-label">Email:</label>
           <input id="email"
@@ -28,6 +44,7 @@
           </div>
         </div>
 
+        <!-- Campo: Teléfono -->
         <div class="form-group">
           <label for="telefono" class="form-label">Teléfono:</label>
           <input id="telefono"
@@ -37,18 +54,6 @@
                  placeholder="Ingrese el teléfono">
           <div *ngIf="residenteForm.get('telefono')?.invalid && residenteForm.get('telefono')?.touched" class="error-message">
             El teléfono es requerido.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="idCasa" class="form-label">ID Casa:</label>
-          <input id="idCasa"
-                 formControlName="idCasa"
-                 type="number"
-                 class="form-control"
-                 placeholder="Ingrese el ID de casa">
-          <div *ngIf="residenteForm.get('idCasa')?.invalid && residenteForm.get('idCasa')?.touched" class="error-message">
-            El ID de casa es requerido.
           </div>
         </div>
 
@@ -68,7 +73,7 @@
               <th>Nombre</th>
               <th>Email</th>
               <th>Teléfono</th>
-              <th>ID Casa</th>
+              <th>Número de Casa</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -77,7 +82,7 @@
               <td>{{ residente.nombre }}</td>
               <td>{{ residente.email }}</td>
               <td>{{ residente.telefono }}</td>
-              <td>{{ residente.idCasa }}</td>
+              <td>{{ getNumeroCasaPorId(residente.idCasa) }}</td>
               <td class="actions-column">
                 <button class="btn btn-edit" (click)="editarResidente(residente)">
                   <i class="fas fa-edit"></i> Editar
