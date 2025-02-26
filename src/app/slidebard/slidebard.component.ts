@@ -5,12 +5,11 @@ import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { BrowserModule } from '@angular/platform-browser';
-import { ViviendaService } from '../../services/registrovivienda.service';
 
 @Component({
   selector: 'app-slidebard',
   standalone: true,
-  providers: [ViviendaService],
+  providers: [],
   imports: [CommonModule, MatIconModule, RouterModule, MatDividerModule, MatListModule],
   templateUrl: './slidebard.component.html',
   styleUrl: './slidebard.component.scss',
@@ -18,7 +17,7 @@ import { ViviendaService } from '../../services/registrovivienda.service';
 export class SlidebardComponent {
   isCollapsed = false;
   @Output() toggle = new EventEmitter<boolean>();
-  constructor(private viviendaService: ViviendaService) {}
+  constructor() {}
   urlbase = '/home';
 
 
@@ -44,8 +43,5 @@ export class SlidebardComponent {
     { icon: 'settings',    label: 'Configuracion', route: `${this.urlbase}/configuracion` },
   ];
 
-  irAVivienda() {
-    this.viviendaService.actualizarEstado(true);
-  }
 
 }

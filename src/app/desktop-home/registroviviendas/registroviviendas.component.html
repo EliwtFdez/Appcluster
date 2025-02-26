@@ -4,11 +4,7 @@
     <div class="form-container">
       <h2>Registro de Viviendas</h2>
       <form [formGroup]="viviendaForm" (ngSubmit)="onSubmit()">
-        <!--
-          Se elimina el campo de ID de la casa (idCasa),
-          dado que se rellena automáticamente y el usuario no debe verlo.
-        -->
-
+        <!-- Se muestra solo el número de casa -->
         <div class="form-group">
           <label for="numeroCasa" class="form-label">Número de Casa:</label>
           <input id="numeroCasa"
@@ -30,7 +26,9 @@
                  placeholder="Ingrese la dirección">
         </div>
         
-        <button type="submit" [disabled]="viviendaForm.invalid" class="btn btn-primary">Registrar Vivienda</button>
+        <button type="submit" [disabled]="viviendaForm.invalid" class="btn btn-primary">
+          Registrar Vivienda
+        </button>
       </form>
     </div>
 
@@ -41,31 +39,40 @@
         <table class="table" *ngIf="viviendas.length > 0; else noViviendas">
           <thead>
             <tr>
-              <!-- Se quita la columna de ID -->
               <th>N° Casa</th>
               <th>Dirección</th>
               <th>Residentes</th>
               <th>Cuotas</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let vivienda of viviendas">
-              <!-- Se quita la celda con la propiedad idCasa -->
-              <td>{{vivienda.numeroCasa}}</td>
-              <td>{{vivienda.direccion || 'N/A'}}</td>
+              <!-- Se muestra solo el NumeroCasa al usuario -->
+              <td>{{ vivienda.numeroCasa }}</td>
+              <td>{{ vivienda.direccion || 'N/A' }}</td>
               <td>
                 <ul>
                   <li *ngFor="let residente of vivienda.residentes">
-                    {{residente.nombre}} {{residente.apellido}}
+                    {{ residente.nombre }} {{ residente.apellido }}
                   </li>
                 </ul>
               </td>
               <td>
                 <ul>
                   <li *ngFor="let cuota of vivienda.cuotas">
-                    {{cuota.monto | currency:'USD':'symbol':'1.2-2'}} ({{cuota.fecha}})
+                    {{ cuota.monto | currency:'USD':'symbol':'1.2-2' }} ({{ cuota.fechaVencimiento || cuota.fecha }})
                   </li>
                 </ul>
+              </td>
+              <td class="actions-column">
+                <button class="btn btn-edit" (click)="editarVivienda(vivienda)">
+                  <i class="fas fa-edit"></i> Editar
+                </button>
+                <!-- Aunque se muestra NumeroCasa, el objeto incluye IdCasa, que se usa en la eliminación -->
+                <button class="btn btn-delete" (click)="eliminarVivienda(vivienda)">
+                  <i class="fas fa-trash"></i> Eliminar
+                </button>
               </td>
             </tr>
           </tbody>
@@ -80,6 +87,8 @@
   </div>
 
   <div class="button-container">
-    <button (click)="cargarViviendas()" class="btn btn-primary me-2">Actualizar Lista</button>
+    <button (click)="cargarViviendas()" class="btn btn-primary me-2">
+      Actualizar Lista
+    </button>
   </div>
 </div>

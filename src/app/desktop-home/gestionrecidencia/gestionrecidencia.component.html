@@ -1,23 +1,107 @@
-<div class="container">
-  <h1>Gestión de Residencia</h1>
-  <div class="residentes">
-    <h2>Lista de Residentes</h2>
-    <button (click)="agregarResidente()">Agregar Residente</button>
-    <ul>
-      <li *ngFor="let residente of residentes">
-        {{ residente.nombre }} - {{ residente.edad }} años
-        <button (click)="editarResidente(residente)">Editar</button>
-        <button (click)="eliminarResidente(residente)">Eliminar</button>
-      </li>
-    </ul>
+<div class="parent">
+  <div class="content-container">
+    <!-- Formulario de registro de residentes -->
+    <div class="form-container">
+      <h2>Registro de Residentes</h2>
+      <form [formGroup]="residenteForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nombre" class="form-label">Nombre:</label>
+          <input id="nombre"
+                 formControlName="nombre"
+                 type="text"
+                 class="form-control"
+                 placeholder="Ingrese el nombre">
+          <div *ngIf="residenteForm.get('nombre')?.invalid && residenteForm.get('nombre')?.touched" class="error-message">
+            El nombre es requerido.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Email:</label>
+          <input id="email"
+                 formControlName="email"
+                 type="email"
+                 class="form-control"
+                 placeholder="Ingrese el email">
+          <div *ngIf="residenteForm.get('email')?.invalid && residenteForm.get('email')?.touched" class="error-message">
+            El email es requerido.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono" class="form-label">Teléfono:</label>
+          <input id="telefono"
+                 formControlName="telefono"
+                 type="text"
+                 class="form-control"
+                 placeholder="Ingrese el teléfono">
+          <div *ngIf="residenteForm.get('telefono')?.invalid && residenteForm.get('telefono')?.touched" class="error-message">
+            El teléfono es requerido.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="idCasa" class="form-label">ID Casa:</label>
+          <input id="idCasa"
+                 formControlName="idCasa"
+                 type="number"
+                 class="form-control"
+                 placeholder="Ingrese el ID de casa">
+          <div *ngIf="residenteForm.get('idCasa')?.invalid && residenteForm.get('idCasa')?.touched" class="error-message">
+            El ID de casa es requerido.
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="residenteForm.invalid" class="btn btn-primary">
+          Registrar Residente
+        </button>
+      </form>
+    </div>
+
+    <!-- Lista de residentes registrados -->
+    <div class="residentes-list-container">
+      <h2>Residentes Registrados</h2>
+      <div class="residentes-table">
+        <table class="table" *ngIf="residentes.length > 0; else noResidentes">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Teléfono</th>
+              <th>ID Casa</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let residente of residentes">
+              <td>{{ residente.nombre }}</td>
+              <td>{{ residente.email }}</td>
+              <td>{{ residente.telefono }}</td>
+              <td>{{ residente.idCasa }}</td>
+              <td class="actions-column">
+                <button class="btn btn-edit" (click)="editarResidente(residente)">
+                  <i class="fas fa-edit"></i> Editar
+                </button>
+                <button class="btn btn-delete" (click)="eliminarResidente(residente)">
+                  <i class="fas fa-trash"></i> Eliminar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ng-template #noResidentes>
+          <div class="alert alert-info">
+            No hay residentes registrados en el sistema.
+          </div>
+        </ng-template>
+      </div>
+    </div>
   </div>
-  
-  <div class="futuros-residentes">
-    <h2>Futuros Residentes</h2>
-    <ul>
-      <li *ngFor="let futuroResidente of futurosResidentes">
-        {{ futuroResidente.nombre }} - {{ futuroResidente.edad }} años
-      </li>
-    </ul>
+
+  <!-- Botón para actualizar la lista -->
+  <div class="button-container">
+    <button (click)="cargarResidentes()" class="btn btn-primary me-2">
+      Actualizar Lista
+    </button>
   </div>
 </div>

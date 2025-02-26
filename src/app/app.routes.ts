@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { GestionrecidenciaComponent } from './desktop-home/gestionrecidencia/gestionrecidencia.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -21,9 +20,8 @@ export const routes: Routes = [
             },
             {
                 path: 'gestionrecidencia',
-                loadComponent: () => import('./desktop-home/gestionrecidencia/gestionrecidencia.component').then(m => m.GestionrecidenciaComponent)
+                loadComponent: () => import('./desktop-home/gestionrecidencia/gestionrecidencia.component').then(m => m.RegistroResidentesComponent)
             },
-
             {
                 path: 'controlaccesso',
                 loadComponent: () => import('./desktop-home/controlacceso/controlacceso.component').then(m => m.ControlaccesoComponent)

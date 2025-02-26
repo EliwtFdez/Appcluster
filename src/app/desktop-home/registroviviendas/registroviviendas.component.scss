@@ -1,12 +1,14 @@
 @use 'sass:color';
 
 // Paleta minimalista
-$background-color: #F5F5F5; // Fondo claro
-$primary-color: #FFFFFF;   // Blanco para contenedores
-$secondary-color: #E0E0E0; // Gris claro para bordes y detalles
-$accent-color: #607D8B;    // Gris azulado para botones y textos
-$text-color: #37474F;      // Gris oscuro para textos
-$error-color: #D32F2F;     // Rojo para mensajes de error
+$background-color: #F5F5F5;
+$primary-color: #FFFFFF;
+$secondary-color: #E0E0E0;
+$accent-color: #607D8B;
+$text-color: #37474F;
+$error-color: #D32F2F;
+$success-color: #4CAF50;    // Agregamos el color de éxito
+$danger-color: #f44336;     // Definimos el color de peligro
 
 body {
   font-family: Arial, sans-serif;
@@ -20,13 +22,16 @@ body {
   margin: 0;
 }
 
+// Eliminar la segunda definición de .parent que está al final del archivo
+// y mantener solo la primera definición modificada así:
 .parent {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   width: 100%;
-  max-width: 500px;
+  max-width: 100%;
+  padding: 20px;
 }
 
 .form-container {
@@ -122,4 +127,81 @@ h2 {
   flex-direction: column;
   gap: 10px;
   width: 100%;
+}
+
+.houses-list-container {
+  width: 100%;
+  background: $primary-color;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.houses-table {
+  width: 100%;
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid $secondary-color;
+    }
+
+    th {
+      background-color: $accent-color;
+      color: $primary-color;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background-color: rgba($secondary-color, 0.1);
+    }
+  }
+}
+
+.actions-column {
+  white-space: nowrap;
+  width: 200px;
+  text-align: center !important;
+
+  .btn {
+    padding: 6px 12px;
+    margin: 0 4px;
+    width: auto;
+
+    &-edit {
+      background-color: $success-color; // Usar la variable definida
+      color: $primary-color;
+
+      &:hover {
+        background-color: color.mix($success-color, black, 85%);
+      }
+    }
+
+    &-delete {
+      background-color: $danger-color;
+      color: $primary-color;
+
+      &:hover {
+        background-color: color.mix($danger-color, black, 85%);
+      }
+    }
+  }
+}
+
+// Make the parent and content container full width
+.parent {
+  max-width: 100%;
+  padding: 20px;
+}
+
+.content-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
