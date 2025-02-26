@@ -1,60 +1,90 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';           // Needed for *ngIf
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ViviendaService } from '../../../services/vivienda.service';
-import { Vivienda } from '../../../models/vivienda.models'; // Ensure this path is correct
+import { CommonModule } from '@angular/common';           
+import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-registroviviendas',
-  standalone: true,  // Mark as standalone if not declared in an NgModule
-  imports: [CommonModule, ReactiveFormsModule],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './registroviviendas.component.html',
   styleUrls: ['./registroviviendas.component.scss']
 })
 export class RegistroviviendasComponent implements OnInit {
-ShowTablesRegisters() {
-throw new Error('Method not implemented.');
-}
-  estadoVivienda: boolean = false;
+  viviendas: any[] = [];
   viviendaForm: FormGroup;
- 
-  constructor(private fb: FormBuilder, private viviendaService: ViviendaService) {
+  private baseApiUrl = 'http://localhost:5112/api/Casas';
+
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient
+  ) {
     this.viviendaForm = this.fb.group({
-      clusterId: ['', Validators.required],
-      numeroCasa: ['', Validators.required],
-      direccion: ['', Validators.required],
-      habitaciones: ['', [Validators.required, Validators.min(1)]],
-      precio: ['', [Validators.required, Validators.min(0)]],
-      descripcion: ['']
+      // idCasa: ['', Validators.required],
+      numeroCasa: ['', [Validators.required, Validators.maxLength(10)]],
+      direccion: ['', [Validators.maxLength(200)]],
+      residentes: this.fb.array([]),
+      cuotas: this.fb.array([])
     });
   }
 
-  onSubmit(): void {
+  ngOnInit() {
+    this.cargarViviendas();
+  }
+
+  get residentes() {
+    return this.viviendaForm.get('residentes') as FormArray;
+  }
+
+  get cuotas() {
+    return this.viviendaForm.get('cuotas') as FormArray;
+  }
+
+  agregarResidente() {
+    this.residentes.push(this.fb.group({
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required]
+    }));
+  }
+
+  eliminarResidente(index: number) {
+    this.residentes.removeAt(index);
+  }
+
+  agregarCuota() {
+    this.cuotas.push(this.fb.group({
+      monto: ['', [Validators.required, Validators.min(0)]],
+      fecha: ['', Validators.required]
+    }));
+  }
+
+  eliminarCuota(index: number) {
+    this.cuotas.removeAt(index);
+  }
+
+  cargarViviendas() {
+    this.http.get<any[]>(this.baseApiUrl).subscribe(
+      (data) => {
+        this.viviendas = data;
+        console.log('Viviendas cargadas:', this.viviendas);
+      },
+      (error) => {
+        console.error('Error al cargar las viviendas:', error);
+      }
+    );
+  }
+
+  onSubmit() {
     if (this.viviendaForm.valid) {
-      const nuevaVivienda: Vivienda = this.viviendaForm.value;
-      this.viviendaService.registrarVivienda(nuevaVivienda).subscribe(
-        (response: Vivienda) => {
+      this.http.post(this.baseApiUrl, this.viviendaForm.value).subscribe(
+        (response) => {
           console.log('Vivienda registrada:', response);
-          alert('Vivienda registrada con éxito');
-          this.viviendaForm.reset(); // Reset the form after successful submission
+          this.cargarViviendas();
         },
-        (error: any) => {
+        (error) => {
           console.error('Error al registrar la vivienda:', error);
-          alert('Hubo un error al registrar la vivienda. Por favor, inténtelo de nuevo.');
         }
       );
-    } else {
-      alert('Por favor, complete el formulario correctamente.');
     }
-  }
-
-  ngOnInit() { 
-    this.viviendaService.viviendaStatus$.subscribe((estado: boolean) => { 
-      this.estadoVivienda = estado; 
-    });
-  }
-
-  cambiarEstado() { 
-    this.viviendaService.actualizarEstado(!this.estadoVivienda);
   }
 }
