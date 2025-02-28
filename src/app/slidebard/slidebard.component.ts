@@ -15,6 +15,7 @@ import { BrowserModule } from '@angular/platform-browser';
   styleUrl: './slidebard.component.scss',
 })
 export class SlidebardComponent {
+
   isCollapsed = false;
   @Output() toggle = new EventEmitter<boolean>();
   constructor() {}
@@ -28,13 +29,13 @@ export class SlidebardComponent {
     console.log('Sidebar toggled');
   }
 
-  // Lista de ítems del menú
+  // Lista de ítems del menús
   menuItems = [
-    { icon: 'home',      label: 'Registro de Viviendas',   route: `${this.urlbase}/registroviviendas` },
+    { icon: 'home',      label: 'Registro de Casas',   route: `${this.urlbase}/registroviviendas` },
     { icon: 'people',    label: 'Gestión de Residentes',   route: `${this.urlbase}/gestionrecidencia` },
-    { icon: 'security',  label: 'Control de Acceso',       route: `${this.urlbase}/controlaccesso` },
+    { icon: 'payment',   label: 'Cuotas y Facturación',     route: `${this.urlbase}/pagofactura` },
     { icon: 'build',     label: 'Mantenimiento',           route: `${this.urlbase}/mantenimiento` },
-    { icon: 'payment',   label: 'Pagos y Facturación',     route: `${this.urlbase}/pagofactura` },
+    { icon: 'security',  label: 'Control de Acceso',       route: `${this.urlbase}/controlaccesso` },
     { icon: 'message',   label: 'Comunicación',            route: `${this.urlbase}/comunicacion` },
   ];
 

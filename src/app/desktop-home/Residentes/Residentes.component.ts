@@ -4,13 +4,13 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-gestionrecidencia',
+  selector: 'app-Residentes',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
-  templateUrl: './gestionrecidencia.component.html',
-  styleUrls: ['./gestionrecidencia.component.scss']
+  templateUrl: './Residentes.component.html',
+  styleUrls: ['./Residentes.component.scss']
 })
-export class RegistroResidentesComponent implements OnInit {
+export class ResidentesComponent implements OnInit {
 
   currentView: 'lista' | 'formulario' = 'lista';
   residentes: any[] = [];

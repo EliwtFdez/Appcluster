@@ -1,0 +1,48 @@
+<div class="container">
+  <h2>Administración de Cuotas</h2>
+  <ul class="cuotas-list">
+    <li *ngFor="let cuota of cuotas; trackBy: trackById" class="cuota-item">
+      <span class="cuota-info">
+        {{ cuota.nombreCuota }} - ${{ cuota.monto }} - 
+        <span [class.estado]="cuota.estado">{{ cuota.estado }}</span>
+      </span>
+      <button class="btn-editar" (click)="editarCuota(cuota)" aria-label="Editar cuota">
+        Editar
+      </button>
+      <button class="btn-eliminar" (click)="eliminarCuota(cuota)" aria-label="Eliminar cuota">
+        Eliminar
+      </button>
+    </li>
+  </ul>
+  <!-- Formulario para agregar una nueva cuota -->
+  <form (ngSubmit)="agregarCuota()">
+    <input
+      type="text"
+      placeholder="Nombre de cuota"
+      [(ngModel)]="nuevaCuota.nombreCuota"
+      name="nombreCuota"
+      required>
+    <input
+      type="number"
+      placeholder="Monto"
+      [(ngModel)]="nuevaCuota.monto"
+      name="monto"
+      required>
+    <input
+      type="date"
+      placeholder="Fecha de vencimiento"
+      [(ngModel)]="nuevaCuota.fechaVencimiento"
+      name="fechaVencimiento"
+      required>
+    <input
+      type="text"
+      placeholder="Descripción"
+      [(ngModel)]="nuevaCuota.descripcion"
+      name="descripcion">
+    <select [(ngModel)]="nuevaCuota.estado" name="estado" required>
+      <option value="pendiente">Pendiente</option>
+      <option value="completado">Completado</option>
+    </select>
+    <button type="submit">Agregar Cuota</button>
+  </form>
+</div>

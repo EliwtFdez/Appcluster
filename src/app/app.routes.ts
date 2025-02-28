@@ -10,17 +10,18 @@ export const routes: Routes = [
         path: 'register',
         loadComponent: () => import('./register/register.component').then(m => m.RegisterComponent)
     },
+
     {
         path: 'home',
         loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
         children: [  // Agregar rutas hijas dentro de home
             {
                 path: 'registroviviendas',
-                loadComponent: () => import('./desktop-home/registroviviendas/registroviviendas.component').then(m => m.RegistroviviendasComponent)
+                loadComponent: () => import('./desktop-home/Casas/Casas.component').then(m => m.CasasComponent)
             },
             {
                 path: 'gestionrecidencia',
-                loadComponent: () => import('./desktop-home/gestionrecidencia/gestionrecidencia.component').then(m => m.RegistroResidentesComponent)
+                loadComponent: () => import('./desktop-home/Residentes/Residentes.component').then(m => m.ResidentesComponent)
             },
             {
                 path: 'controlaccesso',
@@ -32,7 +33,7 @@ export const routes: Routes = [
             },
             {
                 path: 'pagofactura',
-                loadComponent: () => import('./desktop-home/pagofactura/pagofactura.component').then(m => m.PagofacturaComponent)
+                loadComponent: () => import('./desktop-home/Cuotas/Cuotas.component').then(m => m.CuotaComponent)
             },
             {
                 path: 'comunicacion',

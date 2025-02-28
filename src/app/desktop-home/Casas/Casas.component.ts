@@ -4,14 +4,14 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Validators } fr
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-registroviviendas',
+  selector: 'app-Casas',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
-  templateUrl: './registroviviendas.component.html',
-  styleUrls: ['./registroviviendas.component.scss']
+  templateUrl: './Casas.component.html',
+  styleUrls: ['./Casas.component.scss']
 })
 
-export class RegistroviviendasComponent implements OnInit {
+export class CasasComponent implements OnInit {
   viviendas: any[] = [];
   viviendaForm: FormGroup;
   // Variables para manejar la edición
