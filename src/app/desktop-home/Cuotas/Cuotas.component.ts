@@ -1,87 +1,162 @@
 import { Component, OnInit } from '@angular/core';
-import { Cuota, CuotasService } from '../../../services/cuota.service';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-
 @Component({
-  selector: 'app-mantenimiento',
-  imports: [CommonModule,FormsModule,HttpClientModule],
-  templateUrl: './mantenimiento.component.html',
-  styleUrls: ['./mantenimiento.component.css']
+  selector: 'app-Cuotas',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
+  templateUrl: './Cuotas.component.html',
+  styleUrls: ['./Cuotas.component.scss']
 })
+export class CuotasComponent implements OnInit {
 
-export class CuotaComponent implements OnInit {
-  cuotas: Cuota[] = [];
-  // Objeto para el formulario de agregar cuota
-  nuevaCuota: Cuota = {
-    nombreCuota: '',
-    monto: 0,
-    fechaVencimiento: new Date(),
-    descripcion: '',
-    estado: 'pendiente',
-    idCasa: 0,
-    idResidente: 0
-  };
+  cuotas: any[] = [];
+  casas: any[] = [];
+  residentes: any[] = [];
+  cuotaForm: FormGroup;
+  private baseApiUrl = 'http://localhost:5112/api/Cuotas';
+  private casasApiUrl = 'http://localhost:5112/api/Casas';
+  private residentesApiUrl = 'http://localhost:5112/api/Residentes';
 
-  constructor(private cuotasService: CuotasService) { }
+  editMode: boolean = false;
+  cuotaEditandoId: number | null = null;
+
+  constructor(private fb: FormBuilder, private http: HttpClient) {
+    this.cuotaForm = this.fb.group({
+      nombreCuota: ['', Validators.required],
+      monto: [0, [Validators.required, Validators.min(1)]],
+      fechaVencimiento: ['', Validators.required],
+      descripcion: [''],
+      estado: ['pendiente', Validators.required],
+      idCasa: ['', Validators.required],
+      idResidente: ['', Validators.required]
+    });
+  }
 
   ngOnInit(): void {
     this.cargarCuotas();
+    this.cargarCasas();
+    this.cargarResidentes();
   }
 
-  // Método para cargar todas las cuotas
-  cargarCuotas(): void {
-    this.cuotasService.getCuotas().subscribe(
-      data => this.cuotas = data,
-      error => console.error('Error al cargar cuotas', error)
-    );
+  trackById(index: number, cuota: any): any {
+    return cuota.idCuota || cuota.id;
   }
 
-  // Agregar una nueva cuota
-  agregarCuota(): void {
-    this.cuotasService.addCuota(this.nuevaCuota).subscribe(
-      () => {
-        this.cargarCuotas();
-        // Reiniciar el formulario (opcional)
-        this.nuevaCuota = {
-          nombreCuota: '',
-          monto: 0,
-          fechaVencimiento: new Date(),
-          descripcion: '',
-          estado: 'pendiente',
-          idCasa: 0,
-          idResidente: 0
-        };
+  cargarCuotas() {
+    this.http.get<any[]>(this.baseApiUrl).subscribe({
+      next: (data) => {
+        this.cuotas = data;
       },
-      error => console.error('Error al agregar cuota', error)
-    );
+      error: (error) => {
+        console.error('Error al cargar las cuotas:', error);
+      }
+    });
   }
 
-  // Método para editar una cuota (puede abrir un modal o transformar la fila en modo edición)
-  editarCuota(cuota: Cuota): void {
-    // Implementa la lógica para editar. Por ejemplo, abrir un formulario prellenado.
-    // Luego, llamar a updateCuota, asegurándote de pasar el identificador correspondiente.
-    this.cuotasService.updateCuota(cuota.idResidente, cuota).subscribe(
-      () => this.cargarCuotas(),
-      error => console.error('Error al actualizar cuota', error)
-    );
+  cargarCasas() {
+    this.http.get<any[]>(this.casasApiUrl).subscribe({
+      next: (data) => {
+        this.casas = data;
+      },
+      error: (error) => {
+        console.error('Error al cargar las casas:', error);
+      }
+    });
   }
 
-  // Eliminar una cuota
-  eliminarCuota(cuota: Cuota): void {
-    // Asegúrate de identificar correctamente la cuota a eliminar.
-    this.cuotasService.deleteCuota(cuota.idResidente).subscribe(
-      () => this.cargarCuotas(),
-      error => console.error('Error al eliminar cuota', error)
-    );
+  cargarResidentes() {
+    this.http.get<any[]>(this.residentesApiUrl).subscribe({
+      next: (data) => {
+        this.residentes = data;
+      },
+      error: (error) => {
+        console.error('Error al cargar los residentes:', error);
+      }
+    });
   }
 
-  // Función trackBy para optimizar la renderización
-  trackById(index: number, cuota: Cuota): number {
-    // Si la cuota tiene un campo id, se debería retornar ese valor.
-    // En este ejemplo, usamos idResidente como identificador, pero ajusta según tu modelo.
-    return cuota.idResidente;
+  getCasaPorId(idCasa: number): string {
+    const casa = this.casas.find(c => c.idCasa === idCasa);
+    return casa ? casa.direccion : 'N/A';
+  }
+
+  getResidentePorId(idResidente: number): string {
+    const residente = this.residentes.find(r => r.idResidente === idResidente);
+    return residente ? `${residente.nombre} ${residente.apellido}` : 'N/A';
+  }
+
+  guardarCuota() {
+    if (this.cuotaForm.invalid) return;
+    const cuotaData = this.cuotaForm.value;
+
+    if (this.editMode && this.cuotaEditandoId !== null) {
+      this.http.put(`${this.baseApiUrl}/${this.cuotaEditandoId}`, cuotaData).subscribe({
+        next: () => {
+          this.resetFormulario();
+          this.cargarCuotas();
+        },
+        error: (error) => {
+          console.error('Error al actualizar la cuota:', error);
+        }
+      });
+    } else {
+      this.http.post(this.baseApiUrl, cuotaData).subscribe({
+        next: () => {
+          this.resetFormulario();
+          this.cargarCuotas();
+        },
+        error: (error) => {
+          console.error('Error al registrar la cuota:', error);
+        }
+      });
+    }
+  }
+
+  editarCuota(cuota: any) {
+    this.cuotaEditandoId = cuota.idCuota || cuota.id;
+    this.cuotaForm.patchValue(cuota);
+    this.editMode = true;
+  }
+
+  eliminarCuota(cuota: any) {
+    if (confirm('¿Estás seguro de que deseas eliminar esta cuota?')) {
+      const id = cuota.idCuota || cuota.id;
+      this.http.delete(`${this.baseApiUrl}/${id}`).subscribe({
+        next: () => {
+          this.cargarCuotas();
+        },
+        error: (error) => {
+          console.error('Error al eliminar la cuota:', error);
+        }
+      });
+    }
+  }
+
+  resetFormulario() {
+    this.cuotaForm.reset();
+    this.cuotaForm.patchValue({ estado: 'pendiente' });
+    this.editMode = false;
+    this.cuotaEditandoId = null;
+  }
+
+  // 🔹 Imprimir cuota
+  imprimirCuota(cuota: any): void {
+    const printContent = `
+      <h2>Detalles de Cuota</h2>
+      <p><strong>Nombre:</strong> ${cuota.nombreCuota}</p>
+      <p><strong>Monto:</strong> $${cuota.monto}</p>
+      <p><strong>Fecha de Vencimiento:</strong> ${cuota.fechaVencimiento}</p>
+      <p><strong>Estado:</strong> ${cuota.estado}</p>
+      <p><strong>ID Casa:</strong> ${cuota.idCasa}</p>
+      <p><strong>ID Residente:</strong> ${cuota.idResidente}</p>
+    `;
+
+    const newWindow = window.open('', '', 'width=600,height=400');
+    newWindow?.document.write(printContent);
+    newWindow?.print();
+    newWindow?.close();
   }
 }

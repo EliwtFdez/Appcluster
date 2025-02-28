@@ -33,7 +33,7 @@ export const routes: Routes = [
             },
             {
                 path: 'pagofactura',
-                loadComponent: () => import('./desktop-home/Cuotas/Cuotas.component').then(m => m.CuotaComponent)
+                loadComponent: () => import('./desktop-home/Cuotas/Cuotas.component').then(m => m.CuotasComponent)
             },
             {
                 path: 'comunicacion',

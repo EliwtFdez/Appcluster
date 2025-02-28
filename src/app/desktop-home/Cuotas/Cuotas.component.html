@@ -1,48 +1,152 @@
-<div class="container">
-  <h2>Administración de Cuotas</h2>
-  <ul class="cuotas-list">
-    <li *ngFor="let cuota of cuotas; trackBy: trackById" class="cuota-item">
-      <span class="cuota-info">
-        {{ cuota.nombreCuota }} - ${{ cuota.monto }} - 
-        <span [class.estado]="cuota.estado">{{ cuota.estado }}</span>
-      </span>
-      <button class="btn-editar" (click)="editarCuota(cuota)" aria-label="Editar cuota">
-        Editar
-      </button>
-      <button class="btn-eliminar" (click)="eliminarCuota(cuota)" aria-label="Eliminar cuota">
-        Eliminar
-      </button>
-    </li>
-  </ul>
-  <!-- Formulario para agregar una nueva cuota -->
-  <form (ngSubmit)="agregarCuota()">
-    <input
-      type="text"
-      placeholder="Nombre de cuota"
-      [(ngModel)]="nuevaCuota.nombreCuota"
-      name="nombreCuota"
-      required>
-    <input
-      type="number"
-      placeholder="Monto"
-      [(ngModel)]="nuevaCuota.monto"
-      name="monto"
-      required>
-    <input
-      type="date"
-      placeholder="Fecha de vencimiento"
-      [(ngModel)]="nuevaCuota.fechaVencimiento"
-      name="fechaVencimiento"
-      required>
-    <input
-      type="text"
-      placeholder="Descripción"
-      [(ngModel)]="nuevaCuota.descripcion"
-      name="descripcion">
-    <select [(ngModel)]="nuevaCuota.estado" name="estado" required>
-      <option value="pendiente">Pendiente</option>
-      <option value="completado">Completado</option>
-    </select>
-    <button type="submit">Agregar Cuota</button>
-  </form>
+<div class="parent">
+  <div class="content-container">
+    <!-- Formulario de Registro de Cuotas -->
+    <div class="form-container">
+      <h2>{{ editMode ? 'Editar Cuota' : 'Registro de Cuotas' }}</h2>
+      <form [formGroup]="cuotaForm" (ngSubmit)="guardarCuota()">
+        
+        <div class="form-group">
+          <label for="nombreCuota" class="form-label">Nombre de Cuota:</label>
+          <input id="nombreCuota"
+                 formControlName="nombreCuota"
+                 type="text"
+                 class="form-control"
+                 placeholder="Ingrese el nombre de la cuota"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label for="monto" class="form-label">Monto:</label>
+          <input id="monto"
+                 formControlName="monto"
+                 type="number"
+                 class="form-control"
+                 placeholder="Ingrese el monto"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label for="fechaVencimiento" class="form-label">Fecha de Vencimiento:</label>
+          <input id="fechaVencimiento"
+                 formControlName="fechaVencimiento"
+                 type="date"
+                 class="form-control"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label for="descripcion" class="form-label">Descripción:</label>
+          <input id="descripcion"
+                 formControlName="descripcion"
+                 type="text"
+                 class="form-control"
+                 placeholder="Ingrese una descripción">
+        </div>
+
+        <div class="form-group">
+          <label for="estado" class="form-label">Estado:</label>
+          <select id="estado"
+                  formControlName="estado"
+                  class="form-control"
+                  required>
+            <option value="pendiente">Pendiente</option>
+            <option value="completado">Completado</option>
+          </select>
+        </div>
+
+        <!-- Selección de Casa -->
+        <div class="form-group">
+          <label for="idCasa" class="form-label">Casa:</label>
+          <select id="idCasa"
+                  formControlName="idCasa"
+                  class="form-control"
+                  required>
+            <option value="" disabled>Seleccione una casa</option>
+            <option *ngFor="let casa of casas" [value]="casa.idCasa">
+              {{ casa.direccion }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Selección de Residente -->
+        <div class="form-group">
+          <label for="idResidente" class="form-label">Residente:</label>
+          <select id="idResidente"
+                  formControlName="idResidente"
+                  class="form-control"
+                  required>
+            <option value="" disabled>Seleccione un residente</option>
+            <option *ngFor="let residente of residentes" [value]="residente.idResidente">
+              {{ residente.nombre }} {{ residente.apellido }}
+            </option>
+          </select>
+        </div>
+
+        <button type="submit" [disabled]="cuotaForm.invalid" class="btn btn-primary">
+          {{ editMode ? 'Actualizar Cuota' : 'Guardar Cuota' }}
+        </button>
+
+        <button type="button" *ngIf="editMode" class="btn btn-secondary" (click)="resetFormulario()">
+          Cancelar Edición
+        </button>
+      </form>
+    </div>
+
+    <!-- Lista de Cuotas Registradas -->
+    <div class="cuotas-list-container">
+      <h2>Cuotas Registradas</h2>
+      <div class="cuotas-table">
+        <table class="table" *ngIf="cuotas.length > 0; else noCuotas">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Monto</th>
+              <th>Estado</th>
+              <th>Casa</th>
+              <th>Residente</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cuota of cuotas; trackBy: trackById">
+              <td>{{ cuota.nombreCuota }}</td>
+              <td>{{ cuota.monto | currency:'USD':'symbol':'1.2-2' }}</td>
+              <td>
+                <span [ngClass]="{'estado-pendiente': cuota.estado === 'pendiente', 'estado-completado': cuota.estado === 'completado'}">
+                  {{ cuota.estado | titlecase }}
+                </span>
+              </td>
+              <td>{{ getCasaPorId(cuota.idCasa) }}</td>
+              <td>{{ getResidentePorId(cuota.idResidente) }}</td>
+              <td class="actions-column">
+                <button class="btn btn-success" (click)="editarCuota(cuota)" aria-label="Editar cuota">
+                  <i class="fas fa-edit"></i> Editar
+                </button>
+                <button class="btn btn-danger" (click)="eliminarCuota(cuota)" aria-label="Eliminar cuota">
+                  <i class="fas fa-trash"></i> Eliminar
+                </button>
+                <button class="btn btn-print" (click)="imprimirCuota(cuota)" aria-label="Imprimir cuota">
+                  <i class="fas fa-print"></i> Imprimir
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Mensaje cuando no hay cuotas -->
+        <ng-template #noCuotas>
+          <div class="alert alert-info">
+            No hay cuotas registradas en el sistema.
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón para actualizar lista -->
+  <div class="button-container">
+    <button (click)="cargarCuotas()" class="btn btn-primary">
+      Actualizar Lista de Cuotas
+    </button>
+  </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="parent">
   <div class="content-container">
-    <!-- Formulario de registro de residentes -->
+    <!-- Formulario de registro -->
     <div class="form-container">
       <h2>Registro de Residentes</h2>
       <form [formGroup]="residenteForm" (ngSubmit)="onSubmit()">
@@ -17,7 +17,6 @@
             El número de casa es requerido.
           </div>
         </div>
-
         <!-- Campo: Nombre -->
         <div class="form-group">
           <label for="nombre" class="form-label">Nombre:</label>
@@ -30,7 +29,6 @@
             El nombre es requerido.
           </div>
         </div>
-
         <!-- Campo: Email -->
         <div class="form-group">
           <label for="email" class="form-label">Email:</label>
@@ -43,7 +41,6 @@
             El email es requerido.
           </div>
         </div>
-
         <!-- Campo: Teléfono -->
         <div class="form-group">
           <label for="telefono" class="form-label">Teléfono:</label>
@@ -56,7 +53,6 @@
             El teléfono es requerido.
           </div>
         </div>
-
         <button type="submit" [disabled]="residenteForm.invalid" class="btn btn-primary">
           Registrar Residente
         </button>
@@ -106,7 +102,7 @@
   <!-- Botón para actualizar la lista -->
   <div class="button-container">
     <button (click)="cargarResidentes()" class="btn btn-primary me-2">
-      Actualizar Lista
+      Actualizar Lista de Residentes
     </button>
   </div>
 </div>

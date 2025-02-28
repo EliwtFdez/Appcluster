@@ -113,11 +113,14 @@ h2 {
 
 .button-container {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-}
+  justify-content: center;
+  margin-top: 20px;
 
+  .btn {
+    width: auto;
+    padding: 10px 20px;
+  }
+}
 .residentes-list-container {
   width: 100%;
   background: $primary-color;
