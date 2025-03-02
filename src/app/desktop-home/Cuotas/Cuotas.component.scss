@@ -88,7 +88,7 @@ $danger-color: #f44336;
     cursor: pointer;
 
     &:hover {
-      background-color: darken($accent-color, 10%);
+      background-color: color.adjust($accent-color, $lightness: -10%);
     }
 
     &:disabled {
@@ -133,7 +133,7 @@ $danger-color: #f44336;
 
     .actions-column {
       white-space: nowrap;
-      text-align: center;
+      text-align: align;
 
       button {
         padding: 6px 12px;
@@ -148,7 +148,7 @@ $danger-color: #f44336;
           color: $primary-color;
 
           &:hover {
-            background-color: darken($accent-color, 10%);
+            background-color: color.adjust($accent-color, $lightness: -10%);
           }
         }
 
@@ -157,7 +157,7 @@ $danger-color: #f44336;
           color: $primary-color;
 
           &:hover {
-            background-color: darken($danger-color, 10%);
+            background-color: color.adjust($danger-color, $lightness: -10%);
           }
         }
       }
@@ -173,7 +173,7 @@ $danger-color: #f44336;
   margin-top: 20px;
 
   &-info {
-    background-color: lighten($accent-color, 40%);
+    background-color: color.adjust($accent-color, $lightness: 40%);
     color: $text-color;
     border: 1px solid $accent-color;
   }
@@ -195,7 +195,7 @@ $danger-color: #f44336;
     cursor: pointer;
 
     &:hover {
-      background-color: darken($accent-color, 10%);
+      background-color: color.adjust($accent-color, $lightness: -10%);
     }
   }
 }

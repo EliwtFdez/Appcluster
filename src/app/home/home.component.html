@@ -3,7 +3,15 @@
   <app-slidebard (toggle)="onSidebarToggle($event)"></app-slidebard>
 
   <!-- Main content -->
-  <main class="mainContent">
+ <main class="mainContent">
+    <section class="welcome">
+      <h1>Bienvenido al Control de Gastos para un Cluster de Casas</h1>
+      <p>
+        Gestiona de forma intuitiva y colaborativa los gastos compartidos y personales de tu comunidad, condominio o conjunto habitacional. 
+        Lleva un seguimiento claro y transparente para mejorar la convivencia y administración financiera del grupo.
+      </p>
+    </section>
+
     <router-outlet></router-outlet>
   </main>
 </div>

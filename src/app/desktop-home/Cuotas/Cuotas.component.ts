@@ -80,12 +80,13 @@ export class CuotasComponent implements OnInit {
 
   getCasaPorId(idCasa: number): string {
     const casa = this.casas.find(c => c.idCasa === idCasa);
-    return casa ? casa.direccion : 'N/A';
+    return casa ? casa.numeroCasa : 'N/A';
   }
 
   getResidentePorId(idResidente: number): string {
+   //console.log(this.residentes);
     const residente = this.residentes.find(r => r.idResidente === idResidente);
-    return residente ? `${residente.nombre} ${residente.apellido}` : 'N/A';
+    return residente ? `${residente.nombre}` : 'N/A';
   }
 
   guardarCuota() {
@@ -144,15 +145,19 @@ export class CuotasComponent implements OnInit {
 
   // 🔹 Imprimir cuota
   imprimirCuota(cuota: any): void {
+  const numeroCasa = this.getCasaPorId(cuota.idCasa);
+  const nombreResidente = this.getResidentePorId(cuota.idResidente);
+
     const printContent = `
-      <h2>Detalles de Cuota</h2>
-      <p><strong>Nombre:</strong> ${cuota.nombreCuota}</p>
-      <p><strong>Monto:</strong> $${cuota.monto}</p>
-      <p><strong>Fecha de Vencimiento:</strong> ${cuota.fechaVencimiento}</p>
-      <p><strong>Estado:</strong> ${cuota.estado}</p>
-      <p><strong>ID Casa:</strong> ${cuota.idCasa}</p>
-      <p><strong>ID Residente:</strong> ${cuota.idResidente}</p>
+    <h2>Detalles de Cuota</h2>
+    <p><strong>Nombre:</strong> ${cuota.nombreCuota}</p>
+    <p><strong>Monto:</strong> $${cuota.monto}</p>
+    <p><strong>Fecha de Vencimiento:</strong> ${cuota.fechaVencimiento}</p>
+    <p><strong>Estado:</strong> ${cuota.estado}</p>
+    <p><strong>Número de Casa:</strong> ${numeroCasa}</p>
+    <p><strong>Residente:</strong> ${nombreResidente}</p>
     `;
+
 
     const newWindow = window.open('', '', 'width=600,height=400');
     newWindow?.document.write(printContent);

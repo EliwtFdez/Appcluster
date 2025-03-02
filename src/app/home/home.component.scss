@@ -1,5 +1,9 @@
-
 $transition-speed: 0.3s ease-in-out;
+$primary-color: #4CAF50;
+$background-color: #f4f7f9;
+$content-bg: #ffffff;
+$text-color: #333;
+$shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
 @mixin transition($properties...) {
   transition: $properties $transition-speed;
@@ -7,14 +11,21 @@ $transition-speed: 0.3s ease-in-out;
 
 /* Ajuste de las medidas del sidebar en el contenedor principal */
 .parent {
-  display:block;
-  transition: margin-left $transition-speed ease-in-out;
+  display: block;
+  background-color: $background-color;
+  min-height: 100vh;
+  @include transition(margin-left);
 }
 
 .mainContent {
-  transition: margin-left $transition-speed ease-in-out;
   padding: 20px;
   margin-left: 250px; /* Ajuste para cuando el sidebar está expandido */
+  background-color: $content-bg;
+  color: $text-color;
+  min-height: 100vh;
+  box-shadow: $shadow;
+  border-radius: 12px 0 0 12px;
+  @include transition(margin-left);
 }
 
 .parent.sidebar-collapsed .mainContent {
@@ -24,6 +35,7 @@ $transition-speed: 0.3s ease-in-out;
 @media (max-width: 768px) {
   .sidebar {
     width: 80px; /* El sidebar será más pequeño en pantallas móviles */
+    
     .menu {
       margin-top: 60px;
     }
@@ -31,9 +43,31 @@ $transition-speed: 0.3s ease-in-out;
 
   .mainContent {
     margin-left: 0; /* El margin se ajusta a 0 en pantallas pequeñas */
+    border-radius: 0; /* Sin bordes redondeados en móvil */
   }
 
   .parent.sidebar-collapsed .mainContent {
     margin-left: 0;
+  }
+}
+
+/* Estilo agradable para la sección de bienvenida */
+.welcome {
+  padding: 30px;
+  background-color: lighten($primary-color, 45%);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  text-align: center;
+  box-shadow: $shadow;
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: $primary-color;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: darken($text-color, 20%);
   }
 }
