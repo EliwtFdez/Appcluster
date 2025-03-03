@@ -1,0 +1,142 @@
+@use 'sass:color';
+
+// Paleta minimalista
+$background-color: #F5F5F5;
+$primary-color: #FFFFFF;
+$secondary-color: #E0E0E0;
+$accent-color: #607D8B;
+$text-color: #37474F;
+$error-color: #D32F2F;
+$success-color: #4CAF50;
+$danger-color: #f44336;
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: $background-color;
+  color: $text-color;
+  padding: 20px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+
+  color: $primary-color;
+  margin-bottom: 30px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+h2 {
+  color: $accent-color;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  color: $accent-color;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.parent {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+.houses-list-container {
+  width: 100%;
+  background-color: $primary-color;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 20px 0;
+
+  > li {
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: $secondary-color;
+    border-radius: 6px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 15px;
+    margin-top: 10px;
+
+    li {
+      margin-bottom: 5px;
+    }
+  }
+}
+.search-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+
+  input {
+    flex: 1;
+  }
+
+  .btn {
+    width: auto;
+  }
+}
+
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+
+  &-primary {
+    background-color: $accent-color;
+    color: $primary-color;
+
+    &:hover {
+      background-color: color.mix($accent-color, black, 10%);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  .btn {
+    width: auto;
+  }
+}
+
+/* Ocultar botón imprimir al imprimir */
+@media print {
+  .button-container {
+    display: none;
+  }
+}

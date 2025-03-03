@@ -1,22 +1,26 @@
-<div class="parent">
-  <div class="login-card">
-    <h1 class="title">Welcome</h1>
+<div class="background">
+  <div class="login-container">
+    <div class="logo">
+      <img src="../../assets/img/Logo.png" alt="Logo" />
+    </div>
 
-    <!-- Campo de Email -->
-    <mat-form-field appearance="outline" class="input">
+    <h1 class="title">Welcome Back</h1>
+    <p class="subtitle">Log in to manage your property</p>
+
+    <mat-form-field appearance="fill" class="input">
       <mat-label>Email</mat-label>
       <input
         matInput
         [(ngModel)]="email"
         (input)="error = ''"
         type="email"
-        placeholder="Enter your email"
+        placeholder="you@example.com"
         [disabled]="isLoading"
+        required
       />
     </mat-form-field>
 
-    <!-- Campo de Password -->
-    <mat-form-field appearance="outline" class="input">
+    <mat-form-field appearance="fill" class="input">
       <mat-label>Password</mat-label>
       <input
         matInput
@@ -25,15 +29,14 @@
         type="password"
         placeholder="Enter your password"
         [disabled]="isLoading"
+        required
       />
     </mat-form-field>
 
-    <!-- Mensaje de Error -->
     <div *ngIf="error" class="error-message">
       {{ error }}
     </div>
 
-    <!-- Botón de Submit -->
     <button
       mat-raised-button
       color="primary"
@@ -41,13 +44,17 @@
       (click)="handleLogin()"
       [disabled]="isLoading"
     >
-      <span *ngIf="!isLoading">Login</span>
+      <span *ngIf="!isLoading">Log In</span>
       <mat-spinner *ngIf="isLoading" diameter="20" class="spinner"></mat-spinner>
     </button>
 
-    <!-- Enlace para navegar a Register -->
-    <p class="link" (click)="navigateToRegister()">
-      Don't have an account? Register
-    </p>
+    <div class="links">
+      <p class="link" (click)="navigateToForgotPassword()">
+        Forgot your password?
+      </p>
+      <p class="link" (click)="navigateToRegister()">
+        Don't have an account? <span>Register here</span>
+      </p>
+    </div>
   </div>
 </div>

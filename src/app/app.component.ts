@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { CasasComponent } from './desktop-home/Casas/Casas.component';
+import { CasasComponent } from './desktop-home/casas/Casas.component';
 
 @Component({
   selector: 'app-root',

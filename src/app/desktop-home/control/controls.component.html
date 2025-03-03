@@ -1,0 +1,57 @@
+<div class="container">
+  <h1>Listado de Casas</h1>
+
+  <div class="parent">
+
+    <!-- Buscador -->
+    <div class="search-container">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar por número de casa"
+        [(ngModel)]="numeroBusqueda"
+      />
+      <button class="btn btn-primary" (click)="buscarCasa()">Buscar</button>
+      <button class="btn btn-secondary" (click)="limpiarBusqueda()">Mostrar todas</button>
+    </div>
+
+    <!-- Listado filtrado -->
+    <div *ngFor="let casa of casasFiltradas" class="houses-list-container">
+      <h2>Casa #{{ casa.numeroCasa }} (ID: {{ casa.idCasa }})</h2>
+
+      <ul class="details-list">
+        <li><strong>Dirección:</strong> {{ casa.direccion }}</li>
+      </ul>
+
+      <h3>Residentes:</h3>
+      <ul class="details-list">
+        <li *ngFor="let residente of casa.residentes">
+          <ul>
+            <li><strong>Nombre:</strong> {{ residente.nombre }}</li>
+            <li><strong>Teléfono:</strong> {{ residente.telefono }}</li>
+            <li><strong>Email:</strong> {{ residente.email }}</li>
+            <li><strong>ID Residente:</strong> {{ residente.idResidente }}</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Cuotas:</h3>
+      <ul class="details-list">
+        <li *ngFor="let cuota of casa.cuotas">
+          <ul>
+            <li><strong>Nombre Cuota:</strong> {{ cuota.nombreCuota }}</li>
+            <li><strong>Monto:</strong> ${{ cuota.monto }}</li>
+            <li><strong>Fecha Vencimiento:</strong> {{ cuota.fechaVencimiento | date }}</li>
+            <li><strong>Descripción:</strong> {{ cuota.descripcion }}</li>
+            <li><strong>Estado:</strong> {{ cuota.estado }}</li>
+            <li><strong>ID Residente:</strong> {{ cuota.idResidente }}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="button-container">
+      <button class="btn btn-primary" (click)="imprimir()">Imprimir</button>
+    </div>
+  </div>
+</div>

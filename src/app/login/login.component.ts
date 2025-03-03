@@ -23,6 +23,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+
+navigateToForgotPassword() {
+  return this.router.navigate(['/forgot-password']);
+}
   email: string = '';
   password: string = '';
   isLoading: boolean = false;

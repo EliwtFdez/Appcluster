@@ -34,8 +34,8 @@ export class SlidebardComponent {
     { icon: 'home',      label: 'Registro de Casas',   route: `${this.urlbase}/registroviviendas` },
     { icon: 'people',    label: 'Gestión de Residentes',   route: `${this.urlbase}/gestionrecidencia` },
     { icon: 'payment',   label: 'Cuotas y Facturación',     route: `${this.urlbase}/pagofactura` },
+    { icon: 'security',  label: 'Control de Acceso',       route: `${this.urlbase}/control` },
     { icon: 'build',     label: 'Mantenimiento',           route: `${this.urlbase}/mantenimiento` },
-    { icon: 'security',  label: 'Control de Acceso',       route: `${this.urlbase}/controlaccesso` },
     { icon: 'message',   label: 'Comunicación',            route: `${this.urlbase}/comunicacion` },
   ];
 
