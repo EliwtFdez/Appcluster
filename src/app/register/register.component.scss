@@ -1,139 +1,170 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background-color: #1e1e1e;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #ffffff;
-}
-
-.parent {
+.background {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   min-height: 100vh;
-  padding: 1rem;
-  background-color: #1e1e1e;
+  padding: 20px;
+  background: linear-gradient(135deg, #0d3b66, #145da0);
 }
 
 .login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: #eef5fc; // Azul muy claro para armonizar
+  padding: 50px 35px;
+  border-radius: 20px;
+  max-width: 440px;
   width: 100%;
-  max-width: 1200px;
-}
-
-.login-card {
-  background-color: #2c2c2c;
-  padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-  width: 100%;
-  max-width: 450px;
   text-align: center;
-  animation: fadeIn 0.5s ease-in-out;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #c5d9ed;
 }
 
 .title {
-  color: #ffffff;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
+  font-size: 28px;
+  margin-bottom: 12px;
+  color: #0d3b66;
+  font-weight: 700;
 }
 
-/* Formulario */
-.register-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.subtitle {
+  font-size: 16px;
+  margin-bottom: 32px;
+  color: #4a6fa5;
+  font-weight: 500;
 }
 
-/* Material Design Inputs */
-mat-form-field {
+.input {
   width: 100%;
+  margin-bottom: 20px;
+
+  ::ng-deep .mat-form-field-flex {
+    background: #f8fbff; // Fondo muy suave para inputs
+    border-radius: 8px;
+    padding: 2px 10px;
+  }
+
+  ::ng-deep .mat-form-field-label {
+    color: #145da0 !important;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  ::ng-deep .mat-input-element,
+  ::ng-deep .mat-select-value-text {
+    color: #333;
+    font-size: 15px;
+  }
+
+  ::ng-deep .mat-select-arrow {
+    color: #145da0;
+  }
+
+  ::ng-deep .mat-form-field-outline {
+    border-color: #aac4de;
+  }
+
+  ::ng-deep .mat-form-field-appearance-fill.mat-focused .mat-form-field-outline-thick {
+    border-color: #0d3b66;
+  }
+
+  ::ng-deep .mat-form-field-invalid .mat-form-field-outline,
+  ::ng-deep .mat-form-field-invalid .mat-form-field-label,
+  ::ng-deep .mat-form-field-invalid .mat-input-element {
+    color: #d9534f !important;
+    border-color: #d9534f !important;
+  }
 }
 
-mat-form-field.mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #757575;
+.register-form {
+  ::ng-deep .mat-form-field-label {
+    color: #0D5047 !important; // Color del label
+    font-weight: 600;
+  }
+
+  ::ng-deep .mat-input-element,
+  ::ng-deep .mat-select-value-text {
+    color: #0D5047 !important; // Texto dentro del input/select
+  }
+
+
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: #F0F8F7; // Un fondo suave que combine (opcional)
+    border-radius: 8px;
+  }
+
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-outline {
+    color: #0D5047;
+    border-color: #0D5047;
+  }
+
+  ::ng-deep .mat-select-arrow {
+    color: #0D5047;
+  }
+
+  // Cambiar el borde al enfocar
+  ::ng-deep .mat-form-field-appearance-fill.mat-focused .mat-form-field-outline-thick {
+    border-color: #0D5047 !important;
+  }
+
+  // Si hay errores
+  ::ng-deep .mat-form-field-invalid .mat-form-field-outline,
+  ::ng-deep .mat-form-field-invalid .mat-form-field-label,
+  ::ng-deep .mat-form-field-invalid .mat-input-element {
+    color: #d9534f !important;
+    border-color: #d9534f !important;
+  }
+
 }
 
-mat-form-field.mat-form-field-appearance-outline .mat-form-field-label {
-  color: #b3b3b3;
-}
-
-mat-input-element {
-  color: #ffffff;
-}
-
-/* Botón de Registro */
 .register-button {
   width: 100%;
-  padding: 1rem;
-  border-radius: 8px;
-  background-color: #4a90e2;
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 24px;
+  background: #0d3b66;
+  color: #fff;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 16px 0;
+  transition: background 0.3s ease, transform 0.2s;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+
+  &:hover {
+    background: #093159;
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    background-color: #b0bfcf;
+    color: #e2e8f0;
+    cursor: not-allowed;
+  }
 }
 
-.register-button:hover {
-  background-color: #357ab8;
-  transform: scale(1.02);
-}
-
-.register-button:disabled {
-  background-color: #333333;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-/* Enlace para Iniciar Sesión */
 .toggle-form {
-  margin-top: 1.5rem;
-  color: #b3b3b3;
-  font-size: 0.9rem;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #4a6fa5;
 }
 
 .toggle-link {
-  color: #4a90e2;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
+  color: #145da0;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.3s;
 
-.toggle-link:hover {
-  color: #ff6b6b;
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  &:hover {
+    color: #0d3b66;
   }
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .login-card {
-    padding: 2rem;
-  }
-
-  .title {
-    font-size: 1.6rem;
-  }
-
-  .register-button {
-    padding: 0.8rem;
-    font-size: 0.9rem;
-  }
+.error-message {
+  color: #d9534f;
+  font-size: 14px;
+  margin-bottom: 16px;
+  
+::ng-deep .mat-error {
+  color: #C0392B; // Rojo elegante o el color que prefieras
+  font-size: 14px;
+  margin-top: 6px;
+}
 }

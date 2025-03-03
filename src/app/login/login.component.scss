@@ -63,24 +63,28 @@
   }
 }
 
-.button {
+.login-button {
   width: 100%;
-  margin-top: 16px;
-  background: #145da0; // Azul medio
-  color: #ffffff;
-  border-radius: 25px;
-  font-weight: bold;
-  padding: 12px 0;
-  transition: background 0.3s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  margin-top: 24px;
+  background: #0d3b66;
+  color: #fff;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 16px 0;
+  transition: background 0.3s ease, transform 0.2s;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 
   &:hover {
-    background: #0d3b66; // Azul oscuro al pasar el mouse
+    background: #093159;
+    transform: translateY(-2px);
   }
-}
 
-.links {
-  margin-top: 20px;
+  &:disabled {
+    background-color: #b0bfcf;
+    color: #e2e8f0;
+    cursor: not-allowed;
+  }
 }
 
 .link {

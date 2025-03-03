@@ -40,9 +40,9 @@
     <button
       mat-raised-button
       color="primary"
-      class="button"
+      class="button login-button"
       (click)="handleLogin()"
-      [disabled]="isLoading"
+      [disabled]="isLoading || !email || !isEmailValid(email) || !password"
     >
       <span *ngIf="!isLoading">Log In</span>
       <mat-spinner *ngIf="isLoading" diameter="20" class="spinner"></mat-spinner>
