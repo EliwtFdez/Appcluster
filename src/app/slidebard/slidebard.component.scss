@@ -1,10 +1,13 @@
 @use 'sass:color';
 
 $primary-color: #ffffff;
-$hover-bg: rgba(0, 0, 0, 0.314);
-$border-color: #f16b6b;
-$shadow: 2px 2px 10px rgb(0, 0, 0);
+$hover-bg: rgba(255, 255, 255, 0.1);
+$border-color: rgba(255, 255, 255, 0.12);
+$background-color: #1A1A2E;
+$accent-color: #00ADB5;
+$shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 $transition-speed: 0.3s ease-in-out;
+$font-color: #E0E0E0;
 
 @mixin transition($properties...) {
   transition: $properties $transition-speed;
@@ -16,7 +19,7 @@ $transition-speed: 0.3s ease-in-out;
 }
 
 .sidebar {
-  background-color: #3B3B3B;
+  background-color: $background-color;
   padding: 1rem;
   height: 100vh;
   display: flex;
@@ -26,6 +29,7 @@ $transition-speed: 0.3s ease-in-out;
   position: fixed;
   min-width: 80px;
   max-width: 250px;
+  border-right: 1px solid $border-color;
 
   &.collapsed {
     width: 80px;
@@ -41,7 +45,7 @@ $transition-speed: 0.3s ease-in-out;
     }
 
     .label {
-      display: none; // Oculta el texto
+      display: none;
       opacity: 0;
       width: 0;
       @include transition(opacity, width);
@@ -53,22 +57,23 @@ $transition-speed: 0.3s ease-in-out;
     top: 1rem;
     left: 50%;
     transform: translateX(-50%);
-    background: $primary-color;
+    background: $accent-color;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     cursor: pointer;
-    @include transition(all);
-    color: #3B3B3B;
+    color: $background-color;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    @include transition(all);
 
-  &:hover {
+    &:hover {
       transform: translateX(-50%) scale(1.1);
-      background-color: color.adjust($primary-color, $lightness: -10%);
-  }
+      background-color: color.scale($accent-color, $lightness: -10%);
+    }
 
     .logo {
       width: 24px;
@@ -77,61 +82,72 @@ $transition-speed: 0.3s ease-in-out;
   }
 
   .menu {
-    margin-top: 60px;
+    margin-top: 70px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
   }
 
-  .sidebar-item {
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 12px;
+  margin: 6px 0;
+  cursor: pointer;
+  @include transition(all);
+
+  &:hover {
+    background-color: $hover-bg;
+    transform: translateX(4px);
+  }
+
+  button {
     display: flex;
     align-items: center;
-    padding: 12px;
-    border-radius: 8px;
-    margin: 4px 0;
+    width: 100%;
+    background: none;
+    border: none;
+    color: $font-color;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 12px;
     cursor: pointer;
+    border-radius: 12px;
+    text-align: left;
     @include transition(all);
 
-    &:hover {
-      background-color: $hover-bg; 
-      transform: translateX(5px);
-    }
-
-    button {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      background: none;
-      border: none;
-      color: $primary-color;
-      font-size: 16px;
-      font-weight: 500;
-      padding: 10px;
-      cursor: pointer;
-      border-radius: 8px;
-      @include transition(all);
-
-    }
-
-    .icon {
-      font-size: 20px;
-      width: 28px;
-      height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .label {
-      @include transition(opacity);
+    &.active {
+      background-color: rgba(0, 173, 181, 0.2);
+      color: $accent-color;
     }
   }
+
+  .icon {
+    font-size: 20px; // Ajuste más controlado
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px; // Espacio entre ícono y texto
+    flex-shrink: 0; // Evita que el ícono se deforme
+  }
+
+  .label {
+    flex: 1; // Para ocupar el espacio restante
+    white-space: nowrap; // Evita saltos de línea
+    @include transition(opacity);
+  }
+}
+
 
   .sidebar-footer {
     border-top: 1px solid $border-color;
     padding-top: 1rem;
     text-align: center;
-    font-size: 14px;
-    color: #666;
+    font-size: 13px;
+    color: $font-color;
+    opacity: 0.7;
   }
 }

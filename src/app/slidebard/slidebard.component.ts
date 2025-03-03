@@ -32,7 +32,7 @@ export class SlidebardComponent {
   // Lista de ítems del menús
   menuItems = [
     { icon: 'home',      label: 'Registro de Casas',   route: `${this.urlbase}/registroviviendas` },
-    { icon: 'people',    label: 'Gestión de Residentes',   route: `${this.urlbase}/gestionrecidencia` },
+    { icon: 'people',    label: 'Registro de Residentes',   route: `${this.urlbase}/gestionrecidencia` },
     { icon: 'payment',   label: 'Cuotas y Facturación',     route: `${this.urlbase}/pagofactura` },
     { icon: 'security',  label: 'Control de Acceso',       route: `${this.urlbase}/control` },
     { icon: 'build',     label: 'Mantenimiento',           route: `${this.urlbase}/mantenimiento` },

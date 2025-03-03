@@ -1,10 +1,10 @@
 <div class="background">
+  <div class="overlay"></div>
   <div class="login-container">
     <h1 class="title">Crear cuenta</h1>
     <p class="subtitle">Completa los campos para registrarte</p>
 
     <form (ngSubmit)="handleRegister()" class="register-form" #registerForm="ngForm">
-
       <!-- Nombre -->
       <mat-form-field appearance="fill" class="input">
         <mat-label>Nombre</mat-label>

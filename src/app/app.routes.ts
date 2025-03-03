@@ -17,31 +17,31 @@ export const routes: Routes = [
         children: [  // Agregar rutas hijas dentro de home
             {
                 path: 'registroviviendas',
-                loadComponent: () => import('./desktop-home/casas/Casas.component').then(m => m.CasasComponent)
+                loadComponent: () => import('./(home)/casas/Casas.component').then(m => m.CasasComponent)
             },
             {
                 path: 'gestionrecidencia',
-                loadComponent: () => import('./desktop-home/residentes/Residentes.component').then(m => m.ResidentesComponent)
+                loadComponent: () => import('./(home)/residentes/Residentes.component').then(m => m.ResidentesComponent)
             },
             {
                 path: 'control',
-                loadComponent: () => import('./desktop-home/control/control.component').then(m => m.ControlComponent)
+                loadComponent: () => import('./(home)/control/control.component').then(m => m.ControlComponent)
             },
             {
                 path: 'mantenimiento',
-                loadComponent: () => import('./desktop-home/mantenimiento/mantenimiento.component').then(m => m.MantenimientoComponent)
+                loadComponent: () => import('./(home)/mantenimiento/mantenimiento.component').then(m => m.MantenimientoComponent)
             },
             {
                 path: 'pagofactura',
-                loadComponent: () => import('./desktop-home/cuotas/Cuotas.component').then(m => m.CuotasComponent)
+                loadComponent: () => import('./(home)/cuotas/Cuotas.component').then(m => m.CuotasComponent)
             },
             {
                 path: 'comunicacion',
-                loadComponent: () => import('./desktop-home/comunicacion/comunicacion.component').then(m => m.ComunicacionComponent)
+                loadComponent: () => import('./(home)/comunicacion/comunicacion.component').then(m => m.ComunicacionComponent)
             },         
             {
                 path: 'configuracion',
-                loadComponent: () => import('./desktop-home/configuracion/configuracion.component').then(m => m.ConfiguracionComponent)
+                loadComponent: () => import('./(home)/configuracion/configuracion.component').then(m => m.ConfiguracionComponent)
             }
         ]
     },

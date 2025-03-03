@@ -72,7 +72,6 @@ export class ResidentesComponent implements OnInit {
     return casaEncontrada ? casaEncontrada.numeroCasa : 'N/A';
   }
 
-
   // Enviar formulario para registrar o actualizar un residente
   onSubmit() {
     if (this.residenteForm.valid) {

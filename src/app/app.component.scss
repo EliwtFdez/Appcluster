@@ -1,4 +1,12 @@
 :root {
-    background-color: #1c1c1c;
+    --background-main: #121212; /* Negro suave tipo material */
+    --background-secondary: #1A1A2E; /* Azul oscuro elegante */
+    --text-color: #E0E0E0; /* Gris claro para textos */
+    --accent-color: #00ADB5; /* Celeste vibrante para acentos */
+    --border-color: rgba(255, 255, 255, 0.1); /* Líneas sutiles */
     margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Roboto', sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-main);
 }

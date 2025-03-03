@@ -1,21 +1,36 @@
+/* Fondo con imagen y overlay */
 .background {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   padding: 20px;
-  background: linear-gradient(135deg, #0d3b66, #145da0);
+  background-image: url('../../assets/img/backgroundRegister.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
 }
 
 .login-container {
-  background: #eef5fc; // Azul muy claro para armonizar
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.92);
   padding: 50px 35px;
   border-radius: 20px;
-  max-width: 440px;
+  max-width: 460px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid #c5d9ed;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .title {
@@ -37,21 +52,18 @@
   margin-bottom: 20px;
 
   ::ng-deep .mat-form-field-flex {
-    background: #f8fbff; // Fondo muy suave para inputs
+    background: #f8fbff;
     border-radius: 8px;
-    padding: 2px 10px;
   }
 
   ::ng-deep .mat-form-field-label {
     color: #145da0 !important;
     font-weight: 600;
-    font-size: 14px;
   }
 
   ::ng-deep .mat-input-element,
   ::ng-deep .mat-select-value-text {
     color: #333;
-    font-size: 15px;
   }
 
   ::ng-deep .mat-select-arrow {
@@ -72,47 +84,6 @@
     color: #d9534f !important;
     border-color: #d9534f !important;
   }
-}
-
-.register-form {
-  ::ng-deep .mat-form-field-label {
-    color: #0D5047 !important; // Color del label
-    font-weight: 600;
-  }
-
-  ::ng-deep .mat-input-element,
-  ::ng-deep .mat-select-value-text {
-    color: #0D5047 !important; // Texto dentro del input/select
-  }
-
-
-  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
-    background-color: #F0F8F7; // Un fondo suave que combine (opcional)
-    border-radius: 8px;
-  }
-
-  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-outline {
-    color: #0D5047;
-    border-color: #0D5047;
-  }
-
-  ::ng-deep .mat-select-arrow {
-    color: #0D5047;
-  }
-
-  // Cambiar el borde al enfocar
-  ::ng-deep .mat-form-field-appearance-fill.mat-focused .mat-form-field-outline-thick {
-    border-color: #0D5047 !important;
-  }
-
-  // Si hay errores
-  ::ng-deep .mat-form-field-invalid .mat-form-field-outline,
-  ::ng-deep .mat-form-field-invalid .mat-form-field-label,
-  ::ng-deep .mat-form-field-invalid .mat-input-element {
-    color: #d9534f !important;
-    border-color: #d9534f !important;
-  }
-
 }
 
 .register-button {
@@ -161,10 +132,4 @@
   color: #d9534f;
   font-size: 14px;
   margin-bottom: 16px;
-  
-::ng-deep .mat-error {
-  color: #C0392B; // Rojo elegante o el color que prefieras
-  font-size: 14px;
-  margin-top: 6px;
-}
 }
