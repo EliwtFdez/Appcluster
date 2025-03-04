@@ -28,8 +28,8 @@ export const routes: Routes = [
                 loadComponent: () => import('./(home)/control/control.component').then(m => m.ControlComponent)
             },
             {
-                path: 'mantenimiento',
-                loadComponent: () => import('./(home)/mantenimiento/mantenimiento.component').then(m => m.MantenimientoComponent)
+                path: 'informacion',
+                loadComponent: () => import('./(home)/informacion/Informacion.component').then(m => m.InformacionComponent)
             },
             {
                 path: 'pagofactura',

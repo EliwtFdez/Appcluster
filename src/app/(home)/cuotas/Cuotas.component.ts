@@ -10,6 +10,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   templateUrl: './Cuotas.component.html',
   styleUrls: ['./Cuotas.component.scss']
 })
+
 export class CuotasComponent implements OnInit {
 
   cuotas: any[] = [];

@@ -6,6 +6,7 @@ import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   private apiUrl = 'http://tu-backend.com/api'; // Cambia URL
 
