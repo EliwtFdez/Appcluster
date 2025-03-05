@@ -4,7 +4,7 @@
     <div class="form-container">
       <h2>{{ editMode ? 'Editar Cuota' : 'Registro de Cuotas' }}</h2>
       <form [formGroup]="cuotaForm" (ngSubmit)="guardarCuota()">
-        
+
         <div class="form-group">
           <label for="nombreCuota" class="form-label">Nombre de Cuota:</label>
           <input id="nombreCuota"
@@ -56,30 +56,36 @@
 
         <!-- Selección de Casa -->
         <div class="form-group">
-          <label for="idCasa" class="form-label">Casa:</label>
-          <select id="idCasa"
-                  formControlName="idCasa"
-                  class="form-control"
-                  required>
-            <option value="" disabled>Seleccione una casa</option>
-            <option *ngFor="let casa of casas" [value]="casa.idCasa">
-              {{ casa.numeroCasa }}
-            </option>
-          </select>
+        <label for="numeroCasa" class="form-label">Casa:</label>
+        <select id="numeroCasa"
+        formControlName="numeroCasa"
+        class="form-control"
+        required
+        (change)="onCasaSeleccionada($event)">
+        <option value="" disabled>Seleccione una casa</option>
+        <option *ngFor="let casa of casas" [value]="casa.numeroCasa">
+          {{ casa.numeroCasa }}
+        </option>
+      </select>
         </div>
 
-        <!-- Selección de Residente -->
+
+        <!-- Selección de Residente (filtrado por Casa seleccionada) -->
         <div class="form-group">
           <label for="idResidente" class="form-label">Residente:</label>
           <select id="idResidente"
-                  formControlName="idResidente"
-                  class="form-control"
-                  required>
+            formControlName="idResidente"
+            class="form-control"
+            required>
             <option value="" disabled>Seleccione un residente</option>
-            <option *ngFor="let residente of residentes" [value]="residente.idResidente">
+            <option *ngFor="let residente of residentesFiltrados" [value]="residente.idResidente">
               {{ residente.nombre }} {{ residente.apellido }}
             </option>
           </select>
+
+          <small *ngIf="residentesFiltrados.length === 0 && cuotaForm.get('idCasa')?.value">
+            No hay residentes disponibles para esta casa.
+          </small>
         </div>
 
         <button type="submit" [disabled]="cuotaForm.invalid" class="btn btn-primary">

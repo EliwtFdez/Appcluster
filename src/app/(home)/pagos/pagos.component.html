@@ -1,49 +1,88 @@
-<div class="container">
-  <h2>⚙️ Configuración</h2>
+<div class="pagos-container">
+  <h1 class="title">Registrar Pago</h1>
 
-  <!--Sección de Ajustes del Usuario -->
-  <div class="section">
-    <h3>👤 Ajustes del Usuario</h3>
-    
-    <div class="user-profile">
-      <label for="fotoPerfil" class="upload-label">
-        <img [src]="fotoPerfil || 'assets/default-user.png'" alt="Foto de Perfil" class="foto-perfil">
-        <input type="file" id="fotoPerfil" (change)="cambiarFoto($event)">
-      </label>
+<form (ngSubmit)="registrarPago()" #pagoForm="ngForm">
+  <div class="form-group">
+    <label for="casa">Número de Casa:</label>
+    <select id="casa" (change)="asignarIdCasa($event)" required>
+      <option value="">Selecciona una casa</option>
+      <option *ngFor="let casa of casas" [value]="casa.id">{{ casa.numeroCasa }}</option>
+    </select>
+  </div>
 
-      <input type="text" [(ngModel)]="nombreUsuario" placeholder="Nombre de Usuario">
-      <input type="email" [(ngModel)]="correo" placeholder="Correo Electrónico">
-      <input type="password" [(ngModel)]="password" placeholder="Contraseña">
+  <div class="form-group">
+    <label for="residente">Nombre del Residente:</label>
+    <select id="residente" (change)="asignarIdResidente($event)" required>
+      <option value="">Selecciona un residente</option>
+      <option *ngFor="let residente of residentes" [value]="residente.id">{{ residente.nombre }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="cuota">Nombre de Cuota:</label>
+    <select id="cuota" (change)="asignarIdCuota($event)" required>
+      <option value="">Selecciona una cuota</option>
+      <option *ngFor="let cuota of cuotas" [value]="cuota.id">{{ cuota.nombreCuota }}</option>
+    </select>
+    <div *ngIf="descripcionCuota" class="descripcion-cuota">
+      <small>{{ descripcionCuota }}</small>
     </div>
   </div>
 
-  <div class="section">
-    <h3>🔧 Preferencias</h3>
-
-    <div class="setting-item">
-      <label class="switch">
-        <input type="checkbox" [(ngModel)]="modoOscuro" (change)="guardarConfiguracion()">
-        <span class="slider"></span>
-      </label>
-      <span>🌙 Modo Oscuro</span>
-    </div>
-
-    <div class="setting-item">
-      <label class="switch">
-        <input type="checkbox" [(ngModel)]="notificaciones" (change)="guardarConfiguracion()">
-        <span class="slider"></span>
-      </label>
-      <span>🔔 Notificaciones</span>
-    </div>
-
-    <div class="setting-item">
-      <label for="idioma">🌍 Idioma:</label>
-      <select id="idioma" [(ngModel)]="idiomaSeleccionado" (change)="guardarConfiguracion()">
-        <option *ngFor="let idioma of idiomas" [value]="idioma">{{ idioma }}</option>
-      </select>
-    </div>
+  <div class="form-group">
+    <label for="montoPagado">Monto Pagado:</label>
+    <input type="number" step="0.01" id="montoPagado" [(ngModel)]="nuevoPago.montoPagado" name="montoPagado" required />
   </div>
 
-  <!--  Botón de Restablecer -->
-  <button class="btn-reset" (click)="resetearConfiguracion()">🔄 Restablecer Configuración</button>
+  <div class="form-group">
+    <label for="fechaPago">Fecha de Pago:</label>
+    <input type="datetime-local" id="fechaPago" [(ngModel)]="nuevoPago.fechaPago" name="fechaPago" required />
+  </div>
+
+  <div class="form-group">
+    <label for="metodoPago">Método de Pago:</label>
+    <select id="metodoPago" [(ngModel)]="nuevoPago.metodoPago" name="metodoPago" required>
+      <option value="Efectivo">Efectivo</option>
+      <option value="Transferencia">Transferencia</option>
+      <option value="Tarjeta">Tarjeta</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="observaciones">Observaciones:</label>
+    <textarea id="observaciones" [(ngModel)]="nuevoPago.observaciones" name="observaciones"></textarea>
+  </div>
+
+  <button type="submit" [disabled]="pagoForm.invalid">Registrar Pago</button>
+</form>
+
+  <h2 class="subtitle">Historial de Pagos</h2>
+
+<section class="tabla-pagos">
+  <table>
+    <thead>
+      <tr>
+        <th>Número de Casa</th>
+        <th>Residente</th>
+        <th>Cuota</th>
+        <th>Monto</th>
+        <th>Fecha</th>
+        <th>Método</th>
+        <th>Observaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pago of pagos">
+        <td>{{ obtenerNumeroCasa(pago.idCasa) }}</td>
+        <td>{{ obtenerNombreResidente(pago.idResidente) }}</td>
+        <td>{{ obtenerNombreCuota(pago.idCuota) }}</td>
+        <td>${{ pago.montoPagado | number: '1.2-2' }}</td>
+        <td>{{ pago.fechaPago | date: 'short' }}</td>
+        <td>{{ pago.metodoPago }}</td>
+        <td>{{ pago.observaciones }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
 </div>

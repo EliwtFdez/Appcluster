@@ -40,7 +40,7 @@ export const routes: Routes = [
                 loadComponent: () => import('./(home)/comunicacion/comunicacion.component').then(m => m.ComunicacionComponent)
             },         
             {
-                path: 'pagos',
+                path: 'Pagos',
                 loadComponent: () => import('./(home)/pagos/pagos.component').then(m => m.PagosComponent)
             }
         ]

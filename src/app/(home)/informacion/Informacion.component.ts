@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { InformacionService } from '../../../services/informacion.service';
+import { InformacionService } from '../../../services/Informacion.service';
 
 @Component({
   selector: 'app-Informacion',

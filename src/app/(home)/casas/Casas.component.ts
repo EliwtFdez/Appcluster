@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';           
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { CasasService } from '../../../services/Casas.service';
 
 @Component({
   selector: 'app-Casas',
@@ -10,18 +11,15 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   templateUrl: './Casas.component.html',
   styleUrls: ['./Casas.component.scss']
 })
-
 export class CasasComponent implements OnInit {
   viviendas: any[] = [];
   viviendaForm: FormGroup;
-  // Variables para manejar la edición
   isEdit: boolean = false;
   editingCasaId: number | null = null;
-  private baseApiUrl = 'http://localhost:5112/api/Casas';
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient
+    private casasService: CasasService
   ) {
     this.viviendaForm = this.fb.group({
       numeroCasa: ['', [Validators.required, Validators.maxLength(10)]],
@@ -45,9 +43,9 @@ export class CasasComponent implements OnInit {
     }));
   }
 
-  eliminarResidente(idCasa: number, IdResidente: number) {
+  eliminarResidente(idCasa: number, idResidente: number) {
     if (confirm('¿Estás seguro de que deseas eliminar este residente?')) {
-      this.http.delete(`${this.baseApiUrl}/${idCasa}/residentes/${IdResidente}`).subscribe({
+      this.casasService.eliminarResidente(idCasa, idResidente).subscribe({
         next: () => {
           console.log('Residente eliminado correctamente');
           this.cargarViviendas();
@@ -63,7 +61,7 @@ export class CasasComponent implements OnInit {
     if (confirm('¿Estás seguro de que deseas eliminar esta vivienda?')) {
       const idCasa = vivienda.idCasa;
       if (idCasa) {
-        this.http.delete(`${this.baseApiUrl}/${idCasa}`).subscribe({
+        this.casasService.eliminarVivienda(idCasa).subscribe({
           next: () => {
             console.log('Vivienda eliminada:', idCasa);
             this.cargarViviendas();
@@ -90,7 +88,7 @@ export class CasasComponent implements OnInit {
   }
 
   cargarViviendas() {
-    this.http.get<any[]>(this.baseApiUrl).subscribe({
+    this.casasService.obtenerViviendas().subscribe({
       next: (data) => {
         this.viviendas = data;
         console.log('Casas cargadas:', this.viviendas);
@@ -101,18 +99,15 @@ export class CasasComponent implements OnInit {
     });
   }
 
-  // Método para cargar los datos de la casa en el formulario y habilitar el modo edición
   editarVivienda(vivienda: any) {
     this.isEdit = true;
     this.editingCasaId = vivienda.idCasa;
 
-    // Rellenar el formulario con los datos de la casa
     this.viviendaForm.patchValue({
       numeroCasa: vivienda.numeroCasa,
       direccion: vivienda.direccion
     });
 
-    // Limpiar y llenar el FormArray de residentes
     this.residentes.clear();
     if (vivienda.residentes) {
       vivienda.residentes.forEach((residente: any) => {
@@ -123,7 +118,6 @@ export class CasasComponent implements OnInit {
       });
     }
 
-    // Limpiar y llenar el FormArray de cuotas
     this.cuotas.clear();
     if (vivienda.cuotas) {
       vivienda.cuotas.forEach((cuota: any) => {
@@ -135,16 +129,14 @@ export class CasasComponent implements OnInit {
     }
   }
 
-  // Enviar el formulario: si está en modo edición, actualizar; de lo contrario, crear
   onSubmit() {
     if (this.viviendaForm.valid) {
       if (this.isEdit && this.editingCasaId) {
-        this.http.put(`${this.baseApiUrl}/${this.editingCasaId}`, this.viviendaForm.value).subscribe({
-          next: (response) => {
-            console.log('Vivienda actualizada:', response);
+        this.casasService.actualizarVivienda(this.editingCasaId, this.viviendaForm.value).subscribe({
+          next: () => {
+            console.log('Vivienda actualizada');
             this.cargarViviendas();
             this.viviendaForm.reset();
-            // Reiniciar modo edición
             this.isEdit = false;
             this.editingCasaId = null;
           },
@@ -153,9 +145,9 @@ export class CasasComponent implements OnInit {
           }
         });
       } else {
-        this.http.post(this.baseApiUrl, this.viviendaForm.value).subscribe({
-          next: (response) => {
-            console.log('Vivienda registrada:', response);
+        this.casasService.registrarVivienda(this.viviendaForm.value).subscribe({
+          next: () => {
+            console.log('Vivienda registrada');
             this.cargarViviendas();
             this.viviendaForm.reset();
           },
@@ -166,7 +158,4 @@ export class CasasComponent implements OnInit {
       }
     }
   }
-  
-  // Puedes mantener este método para depuración o ampliarlo según tus necesidades
-  // editarVivienda(vivienda: any) ya está implementado arriba
 }
