@@ -7,8 +7,11 @@ import { Observable } from 'rxjs';
 })
 
 export class InformacionService {
+  getCasasSinDueno() {
+    throw new Error('Method not implemented.');
+  }
 
-  private apiUrl = 'https://localhost:7047/api';
+  private apiUrl = 'http://localhost:5112/api';
 
   constructor(private http: HttpClient) { }
 
@@ -16,15 +19,15 @@ export class InformacionService {
     return this.http.get<number>(`${this.apiUrl}/Casas/Total`);
   }
 
-  getCasasSinDueno(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}/Casas/SinDueno`);
-  }
-
-  getSaldoTotalPagado(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}/Pago/TotalPagado`);
-  }
-
-  getSaldoAdeudo(): Observable<number> {
+  getTotalDeuda(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/Cuotas/TotalDeuda`);
+  }
+
+  getTotalPago(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/Pago/TotalDeuda`);
+  }
+
+  getTotalResidente(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/Residentes/Total`);
   }
 }

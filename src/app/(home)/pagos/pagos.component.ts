@@ -3,12 +3,13 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-configuracion',
+  selector: 'app-pagos',
   imports: [CommonModule, FormsModule],
-  templateUrl: './configuracion.component.html',
-  styleUrl: './configuracion.component.scss'
+  templateUrl: './pagos.component.html',
+  styleUrl: './pagos.component.scss'
 })
-export class ConfiguracionComponent {
+export class PagosComponent {
+
  modoOscuro: boolean = false;
   notificaciones: boolean = true;
   idiomaSeleccionado: string = 'Español';

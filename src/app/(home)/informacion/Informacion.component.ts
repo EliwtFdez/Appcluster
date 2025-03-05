@@ -15,9 +15,9 @@ import { InformacionService } from '../../../services/informacion.service';
 export class InformacionComponent implements OnInit {
 
   totalCasas: number = 0;
-  casasSinDueno: number = 0;
-  saldoTotalPagado: number = 0;
-  saldoAdeudo: number = 0;
+  totalDeuda: number = 0;
+  totalPagado: number = 0;
+  totalResidentes: number = 0;
 
   constructor(private informacionService: InformacionService) {}
 
@@ -27,8 +27,8 @@ export class InformacionComponent implements OnInit {
 
   async cargarInformacion(): Promise<void> {
     this.informacionService.getTotalCasas().subscribe(data => this.totalCasas = data);
-    this.informacionService.getCasasSinDueno().subscribe(data => this.casasSinDueno = data);
-    this.informacionService.getSaldoTotalPagado().subscribe(data => this.saldoTotalPagado = data);
-    this.informacionService.getSaldoAdeudo().subscribe(data => this.saldoAdeudo = data);
+    this.informacionService.getTotalDeuda().subscribe(data => this.totalDeuda = data);
+    this.informacionService.getTotalPago().subscribe(data => this.totalPagado = data);
+    this.informacionService.getTotalResidente().subscribe(data => this.totalResidentes = data);
   }
 }

@@ -31,9 +31,10 @@ export class SlidebardComponent {
 
   // Lista de ítems del menús
   menuItems = [
-    { icon: 'home',      label: 'Registro de Casas',   route: `${this.urlbase}/registroviviendas` },
-    { icon: 'people',    label: 'Registro de Residentes',   route: `${this.urlbase}/gestionrecidencia` },
-    { icon: 'payment',   label: 'Cuotas y Facturación',     route: `${this.urlbase}/pagofactura` },
+    { icon: 'home',      label: 'Casas',   route: `${this.urlbase}/registroviviendas` },
+    { icon: 'people',    label: 'Residentes',   route: `${this.urlbase}/gestionrecidencia` },
+    { icon: 'payment',   label: 'Facturas',     route: `${this.urlbase}/pagofactura` },
+    { icon: 'attach_money',    label: 'Pagos', route: `${this.urlbase}/Pagos` },
     { icon: 'security',  label: 'Informacion',       route: `${this.urlbase}/informacion` },
     { icon: 'build',     label: 'Mantenimiento',           route: `${this.urlbase}/mantenimiento` },
     { icon: 'message',   label: 'Comunicación',            route: `${this.urlbase}/comunicacion` },
@@ -41,7 +42,6 @@ export class SlidebardComponent {
 
   lastMenuItems = [
     { icon: 'exit_to_app', label: 'Cerrar sesión', route: '/login' },
-    { icon: 'settings',    label: 'Configuracion', route: `${this.urlbase}/configuracion` },
   ];
 
 
