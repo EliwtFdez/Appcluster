@@ -1,88 +1,89 @@
+
 <div class="page-container">
-  <div class="background">
-    <div class="overlay"></div>
-    <div class="login-container">
-      <div class="logo">
-        <img src="../../assets/img/Logo.png" alt="Logo" />
-      </div>
+<div class="background">
+  <div class="overlay"></div>
+  <div class="login-container">
+    <div class="logo">
+      <img src="../../assets/img/Logo.png" alt="Logo" />
+    </div>
 
-      <h1 class="title">Bienvenido</h1>
-      <p class="subtitle">Inicia sesión para control administrativo</p>
+    <h1 class="title">Welcome Back</h1>
+    <p class="subtitle">Log in to manage your property</p>
 
-      <mat-form-field appearance="fill" class="input">
-        <mat-label>Correo electrónico</mat-label>
-        <input
-          matInput
-          [(ngModel)]="email"
-          (input)="error = ''"
-          type="email"
-          placeholder="you@example.com"
-          [disabled]="isLoading"
-          required
-        />
-      </mat-form-field>
+    <mat-form-field appearance="fill" class="input">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        [(ngModel)]="email"
+        (input)="error = ''"
+        type="email"
+        placeholder="you@example.com"
+        [disabled]="isLoading"
+        required
+      />
+    </mat-form-field>
 
-      <mat-form-field appearance="fill" class="input">
-        <mat-label>Contraseña</mat-label>
-        <input
-          matInput
-          [(ngModel)]="password"
-          (input)="error = ''"
-          type="password"
-          placeholder="Ingresa tu contraseña"
-          [disabled]="isLoading"
-          required
-        />
-      </mat-form-field>
+    <mat-form-field appearance="fill" class="input">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [(ngModel)]="password"
+        (input)="error = ''"
+        type="password"
+        placeholder="Enter your password"
+        [disabled]="isLoading"
+        required
+      />
+    </mat-form-field>
 
-      <div *ngIf="error" class="error-message">
-        {{ error }}
-      </div>
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
 
-      <button
-        mat-raised-button
-        color="primary"
-        class="button login-button"
-        (click)="handleLogin()"
-        [disabled]="isLoading || !email || !isEmailValid(email) || !password"
-      >
-        <span *ngIf="!isLoading">Iniciar sesión</span>
-        <mat-spinner *ngIf="isLoading" diameter="20" class="spinner"></mat-spinner>
-      </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="button login-button"
+      (click)="handleLogin()"
+      [disabled]="isLoading || !email || !isEmailValid(email) || !password"
+    >
+      <span *ngIf="!isLoading">Log In</span>
+      <mat-spinner *ngIf="isLoading" diameter="20" class="spinner"></mat-spinner>
+    </button>
 
-      <div class="links">
-        <p class="link" (click)="navigateToForgotPassword()">¿Olvidaste tu contraseña?</p>
-        <p class="link" (click)="navigateToRegister()">¿No tienes una cuenta? <span>Regístrate aquí</span></p>
-      </div>
+    <div class="links">
+      <p class="link" (click)="navigateToForgotPassword()">Forgot your password?</p>
+      <p class="link" (click)="navigateToRegister()">Don't have an account? <span>Register here</span></p>
     </div>
   </div>
+</div>
 
-  <footer class="footer">
-    <div class="footer-content">
-      
-      <div class="footer-section">
-        <img src="../../assets/img/Logo.png" alt="Logo" class="footer-logo" />
-      </div>
-
-      <div class="footer-section">
-        <h3>Horario de Atención</h3>
-        <p>Lunes a viernes: 9:00 AM - 6:00 PM</p>
-        <p>Fin de semana: 10:00 AM - 6:00 PM</p>
-      </div>
-
-      <div class="footer-section">
-        <a href="#">Inicio</a>
-        <a href="#">Sobre nosotros</a>
-        <a href="#">Servicios</a>
-        <a href="#">Contacto</a>
-        <a href="#">Aviso de privacidad</a>
-      </div>
-
+<footer class="footer">
+  <div class="footer-content">
+    
+    <div class="footer-section">
+      <img src="../../assets/img/Logo.png" alt="Logo" class="footer-logo" />
     </div>
 
-    <div class="footer-bottom">
-      © 2025 Team Grapes
+    <div class="footer-section">
+      <h3>Horario de Atención</h3>
+      <p>Lunes a viernes: 9:00 AM - 6:00 PM</p>
+      <p>Fin de semana: 10:00 AM - 6:00 PM</p>
     </div>
-  </footer>
+
+    <div class="footer-section">
+      <a href="#">Inicio</a>
+      <a href="#">Sobre nosotros</a>
+      <a href="#">Servicios</a>
+      <a href="#">Contacto</a>
+      <a href="#">Aviso de privacidad</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 Team Grapes
+  </div>
+</footer>
 
 </div>

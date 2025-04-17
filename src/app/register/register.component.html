@@ -43,16 +43,14 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Rol -->
+      <!-- Número de Casa -->
       <mat-form-field appearance="fill" class="input">
-        <mat-label>Rol</mat-label>
-        <mat-select [(ngModel)]="rol" name="rol" required #rolInput="ngModel">
-          <mat-option [value]="'inquilino'">Inquilino</mat-option>
-          <mat-option [value]="'comite'">Comité</mat-option>
+        <mat-label>Número de Casa</mat-label>
+        <mat-select [(ngModel)]="houseNumber" name="houseNumber" required>
+          <mat-option *ngFor="let number of houseNumbers" [value]="number">
+            {{ number }}
+          </mat-option>
         </mat-select>
-        <mat-error *ngIf="rolInput.invalid && rolInput.touched">
-          El rol es obligatorio.
-        </mat-error>
       </mat-form-field>
 
       <!-- Contraseña -->
