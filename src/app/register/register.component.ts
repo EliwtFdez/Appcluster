@@ -9,7 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router, RouterModule } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +23,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     RouterModule,
     MatProgressSpinnerModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
@@ -31,6 +32,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class RegisterComponent {
   email: string = '';
   username: string = '';
+  rol: string = '';
   password: string = '';
   confirmPassword: string = '';
   isLoading: boolean = false;
@@ -38,8 +40,11 @@ export class RegisterComponent {
   houseNumbers: number[] = Array.from({ length: 60 }, (_, i) => i + 1);
   houseNumber: any;
 
-constructor(private router: Router, private snackBar: MatSnackBar) {}
-
+  constructor(
+    private router: Router, 
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
+  ) {}
 
   isEmailValid(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -50,33 +55,45 @@ constructor(private router: Router, private snackBar: MatSnackBar) {}
     try {
       this.error = '';
 
-      if (!this.email || !this.username || !this.password || !this.confirmPassword) {
-        this.error = 'Please fill in all fields';
+      if (!this.email || !this.username || !this.rol || !this.password || !this.confirmPassword) {
+        this.error = 'Por favor completa todos los campos';
         return;
       }
 
       if (!this.isEmailValid(this.email)) {
-        this.error = 'Please enter a valid email address';
+        this.error = 'Por favor ingresa un email válido';
         return;
       }
 
       if (this.password.length < 6) {
-        this.error = 'Password must be at least 6 characters long';
+        this.error = 'La contraseña debe tener al menos 6 caracteres';
         return;
       }
 
       if (this.password !== this.confirmPassword) {
-        this.error = 'Passwords do not match';
+        this.error = 'Las contraseñas no coinciden';
         return;
       }
 
-      this.isLoading = true;
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const confirm = window.confirm(`¿Estás seguro de que quieres registrarte como ${this.rol}?`);
+      
+      if (confirm) {
+        this.isLoading = true;
+        
+        const userData = {
+          email: this.email,
+          username: this.username,
+          role: this.rol,
+          password: this.password
+        };
 
-      this.snackBar.open('Registration successful!', 'Close', { duration: 3000 });
-      this.router.navigate(['/login']);
+        
+        this.snackBar.open('¡Registro exitoso!', 'Cerrar', { duration: 3000 });
+        this.router.navigate(['/login']);
+      }
     } catch (err) {
-      this.error = 'An error occurred during registration';
+      this.error = 'Ocurrió un error durante el registro';
+      console.error('Registration error:', err);
     } finally {
       this.isLoading = false;
     }
